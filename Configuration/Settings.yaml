@@ -20,3 +20,8 @@ TYPO3:
     typoScript:
       autoInclude:
         'UpAssist.Neos.FrontendLogin': TRUE
+    modules:
+      administration:
+        submodules:
+          users:
+            controller: 'UpAssist\Neos\FrontendLogin\Controller\Module\Administration\UsersController'
