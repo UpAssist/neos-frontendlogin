@@ -1,0 +1,6 @@
+<f:flashMessages class="flashmessages"/>
+<ul>
+    <f:for each="{users}" as="user">
+        <li>{user.name.firstName} {user.name.lastName} - <f:form action="delete" arguments="{user:user}"><f:form.button type="submit">Delete user</f:form.button></f:form></li>
+    </f:for>
+</ul>

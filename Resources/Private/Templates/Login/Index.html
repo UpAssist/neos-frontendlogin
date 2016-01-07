@@ -1,0 +1,28 @@
+<f:security.ifAccess privilegeTarget="TYPO3.Neos:Backend.GeneralAccess">
+    <f:then>
+        <p>The Frontend User Login Form is disabled in backend mode.</p>
+    </f:then>
+    <f:else>
+        <f:flashMessages class="flashmessages"/>
+        <f:security.ifHasRole role="UpAssist.Neos.FrontendLogin:User">
+            <f:then>
+                <p>You're logged in as <strong>"{account.accountIdentifier}"</strong></p>
+                <f:form action="logout" method="post">
+                    <f:form.button type="submit">Logout</f:form.button>
+                </f:form>
+            </f:then>
+            <f:else>
+                <f:form action="authenticate" method="post">
+                    <label for="username">Username</label>
+                    <input name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]"
+                           id="username" type="text"/>
+                    <label for="password">Password</label>
+                    <input name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][password]"
+                           id="password"
+                           type="password"/>
+                    <f:form.button type="submit">Login</f:form.button>
+                </f:form>
+            </f:else>
+        </f:security.ifHasRole>
+    </f:else>
+</f:security.ifAccess>

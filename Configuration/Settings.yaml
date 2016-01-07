@@ -1,0 +1,22 @@
+TYPO3:
+
+  Flow:
+    security:
+      authentication:
+        providers:
+          'Typo3BackendProvider':
+            requestPatterns:
+              'UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern': 'backend'
+          'UpAssist.Neos.FrontendLogin:Frontend':
+            provider: 'PersistedUsernamePasswordProvider'
+            requestPatterns:
+              'UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern': 'frontend'
+
+    aop:
+      globalObjects:
+        'frontendUserService': 'UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService'
+
+  Neos:
+    typoScript:
+      autoInclude:
+        'UpAssist.Neos.FrontendLogin': TRUE

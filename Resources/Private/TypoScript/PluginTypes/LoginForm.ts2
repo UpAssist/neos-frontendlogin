@@ -1,0 +1,14 @@
+prototype(UpAssist.Neos.FrontendLogin:LoginForm) < prototype(TYPO3.Neos:Plugin) {
+    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/PluginTypes/Login/Index.html'
+    package = 'UpAssist.Neos.FrontendLogin'
+    controller = 'Login'
+    action = 'index'
+    redirectNode = TYPO3.Neos:NodeUri {
+        node = ${q(node).property('redirectNode')}
+    }
+    logoutRedirectNode = TYPO3.Neos:NodeUri {
+        node = ${q(node).property('logoutRedirectNode')}
+    }
+    # Set to true if you want to suppress the succesfull login flashmessage
+    suppressFlashMessage = false
+}

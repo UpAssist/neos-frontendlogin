@@ -1,0 +1,43 @@
+privilegeTargets:
+
+  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+
+    'UpAssist.Neos.FrontendLogin:LoginForm':
+      matcher: 'within(TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController) && method(public .*->(?!initialize).*Action())'
+    'UpAssist.Neos.FrontendLogin:RegistrationForm':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
+    'UpAssist.Neos.FrontendLogin:UserProfile':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show)Action())'
+    'UpAssist.Neos.FrontendLogin:UserIndex':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(index)Action())'
+    'UpAssist.Neos.FrontendLogin:CanDeleteUsers':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
+
+roles:
+
+  'TYPO3.Flow:Everybody':
+    privileges:
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:LoginForm'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:RegistrationForm'
+        permission: GRANT
+
+  'UpAssist.Neos.FrontendLogin:User':
+    privileges:
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'
+        permission: GRANT
+
+  'TYPO3.Neos:Editor':
+    privileges:
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserIndex'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanDeleteUsers'
+        permission: GRANT

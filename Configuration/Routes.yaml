@@ -1,0 +1,9 @@
+-
+  name: 'FrontendLogin Api'
+  uriPattern: 'api/user/{@controller}(/{@action})'
+  defaults:
+    '@package': 'UpAssist.Neos.FrontendLogin'
+    '@controller': 'Login'
+    '@action': 'index'
+    '@format': 'html'
+  appendExceedingArguments: TRUE
