@@ -17,7 +17,7 @@ class UsersController extends \TYPO3\Neos\Controller\Module\Administration\Users
      */
     public function newAction(User $user = null)
     {
-        $this->view->assign('authenticationProviders', ['Typo3BackendProvider' => 'Neos User', 'UpAssist.Neos.FrontendLogin:Frontend' => 'Website User']);
+        $this->view->assign('authenticationProviders', ['UpAssist.Neos.FrontendLogin:Frontend' => 'Website User', 'Typo3BackendProvider' => 'Neos User']);
         parent::newAction($user);
     }
 
@@ -37,7 +37,7 @@ class UsersController extends \TYPO3\Neos\Controller\Module\Administration\Users
     public function createAction($username, array $password, User $user, array $roleIdentifiers, $authenticationProvider = null)
     {
         $this->userService->addUser($username, $password[0], $user, $roleIdentifiers, $authenticationProvider);
-        $this->addFlashMessage('The user "%s" has been created.', 'User created', Message::SEVERITY_OK, array(htmlspecialchars($username)), 1416225561);
+        $this->addFlashMessage('The user "%s" has been created.', 'User created', Message::SEVERITY_OK, [htmlspecialchars($username)], 1416225561);
         $this->redirect('index');
     }
 }

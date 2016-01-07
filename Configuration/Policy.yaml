@@ -47,6 +47,12 @@ roles:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
         permission: GRANT
+      -
+        privilegeTarget: 'TYPO3.Neos:Backend.Module.Administration'
+        permission: GRANT
+      -
+        privilegeTarget: 'TYPO3.Neos:Backend.Module.Administration.Users'
+        permission: GRANT
 
   'TYPO3.Neos:Administrator':
       -
