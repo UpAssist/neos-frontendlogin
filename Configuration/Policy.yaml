@@ -15,6 +15,10 @@ privilegeTargets:
     'UpAssist.Neos.FrontendLogin:CanAdministerUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\Module\UsersController->(index|show|new|create|edit|update|delete|newElectronicAddress|createElectronicAddress|deleteElectronicAddress|editAccount|updateAccount)Action())'
 
+  'UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\ReadNodePrivilege':
+
+    'UpAssist.Neos.FrontendLogin:RestrictNode':
+      matcher: 'nodePropertyIs("restrictNode", true) || parentNodePropertyIs("restrictNode", true)'
 
 roles:
 
@@ -32,6 +36,10 @@ roles:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'
         permission: GRANT
+      -
+        # Grant "frontend users" access to Nodes with property "restricted" == true
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:RestrictNode'
+        permission: GRANT
 
   'TYPO3.Neos:Editor':
     privileges:
@@ -47,8 +55,7 @@ roles:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
         permission: GRANT
-
-  'TYPO3.Neos:Administrator':
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
+        # Grant "frontend users" access to Nodes with property "restricted" == true
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:RestrictNode'
         permission: GRANT

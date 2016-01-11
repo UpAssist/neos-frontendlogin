@@ -15,3 +15,14 @@
         label: 'Redirect upon logout'
         inspector:
           group: 'pluginSettings'
+
+'UpAssist.Neos.FrontendLogin:RestrictNodeMixin':
+  abstract: true
+  properties:
+    restrictNode:
+      type: boolean
+      ui:
+        label: 'UpAssist.Neos.FrontendLogin:NodeTypes.Node:properties.restrictNode'
+        inspector:
+          group: 'visibility'
+          position: 100

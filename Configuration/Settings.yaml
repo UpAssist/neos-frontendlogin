@@ -20,6 +20,11 @@ TYPO3:
     typoScript:
       autoInclude:
         'UpAssist.Neos.FrontendLogin': TRUE
+      userInterface:
+         translation:
+           autoInclude:
+             'UpAssist.Neos.FrontendLogin': ['NodeTypes/*']
+
     modules:
       frontendUsers:
         label: 'TYPO3.Neos:Modules:users.label'
