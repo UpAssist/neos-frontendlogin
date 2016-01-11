@@ -1,5 +1,4 @@
 prototype(UpAssist.Neos.FrontendLogin:LoginForm) < prototype(TYPO3.Neos:Plugin) {
-    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/Login/Index.html'
     package = 'UpAssist.Neos.FrontendLogin'
     controller = 'Login'
     action = 'index'

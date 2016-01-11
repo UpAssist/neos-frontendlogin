@@ -1,5 +1,4 @@
 prototype(UpAssist.Neos.FrontendLogin:RegistrationForm) < prototype(TYPO3.Neos:Plugin) {
-    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/User/New.html'
     package = 'UpAssist.Neos.FrontendLogin'
     controller = 'User'
     action = 'new'
