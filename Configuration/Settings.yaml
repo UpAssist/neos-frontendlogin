@@ -21,7 +21,13 @@ TYPO3:
       autoInclude:
         'UpAssist.Neos.FrontendLogin': TRUE
     modules:
-      administration:
-        submodules:
-          users:
-            controller: 'UpAssist\Neos\FrontendLogin\Controller\Module\Administration\UsersController'
+      frontendUsers:
+        label: 'TYPO3.Neos:Modules:users.label'
+        controller: 'UpAssist\Neos\FrontendLogin\Controller\Module\UsersController'
+        description: 'TYPO3.Neos:Modules:users.description'
+        icon: 'icon-group'
+        actions:
+          new:
+            label: 'TYPO3.Neos:Modules:users.actions.new.label'
+            title: 'TYPO3.Neos:Modules:users.actions.new.title'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'

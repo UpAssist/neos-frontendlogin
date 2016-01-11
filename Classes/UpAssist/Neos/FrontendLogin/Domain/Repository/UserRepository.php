@@ -7,6 +7,7 @@ namespace UpAssist\Neos\FrontendLogin\Domain\Repository;
 
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Security\Account;
+use TYPO3\Flow\Security\Policy\Role;
 use TYPO3\Neos\Domain\Model\User;
 
 /**
@@ -30,4 +31,17 @@ class UserRepository extends \TYPO3\Neos\Domain\Repository\UserRepository
                 ->getFirst();
     }
 
+    /**
+     * @param Role $role
+     * @return User
+     */
+    public function findHavingRole(Role $role)
+    {
+        $query = $this->createQuery();
+        return
+            $query->matching(
+                $query->contains('roles', $role)
+            )
+                ->execute();
+    }
 }

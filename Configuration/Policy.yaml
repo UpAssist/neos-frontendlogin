@@ -13,7 +13,7 @@ privilegeTargets:
     'UpAssist.Neos.FrontendLogin:CanDeleteUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
     'UpAssist.Neos.FrontendLogin:CanAdministerUsers':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\Module\Administration\UsersController->(index|show|new|create|edit|update|delete|newElectronicAddress|createElectronicAddress|deleteElectronicAddress|editAccount|updateAccount)Action())'
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\Module\UsersController->(index|show|new|create|edit|update|delete|newElectronicAddress|createElectronicAddress|deleteElectronicAddress|editAccount|updateAccount)Action())'
 
 
 roles:
@@ -46,12 +46,6 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
-        permission: GRANT
-      -
-        privilegeTarget: 'TYPO3.Neos:Backend.Module.Administration'
-        permission: GRANT
-      -
-        privilegeTarget: 'TYPO3.Neos:Backend.Module.Administration.Users'
         permission: GRANT
 
   'TYPO3.Neos:Administrator':

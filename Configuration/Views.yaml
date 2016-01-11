@@ -1,5 +1,5 @@
 -
-  requestFilter: 'isController("Module\Administration\Users")'
+  requestFilter: 'isController("Module\Users")'
   options:
     layoutRootPaths:
       'UpAssist\Neos\FrontendLogin': 'resource://TYPO3.Neos/Private/Layouts'
