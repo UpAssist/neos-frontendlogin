@@ -1,0 +1,4 @@
+prototype(UpAssist.Neos.FrontendLogin:LoginStatus) < prototype(TYPO3.TypoScript:Template) {
+    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/User/Status.html'
+    account = ${Security.getAccount()}
+}

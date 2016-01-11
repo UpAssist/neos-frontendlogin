@@ -1,5 +1,5 @@
 prototype(UpAssist.Neos.FrontendLogin:Profile) < prototype(TYPO3.Neos:Plugin) {
-    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/PluginTypes/User/Show.html'
+    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/User/Show.html'
     package = 'UpAssist.Neos.FrontendLogin'
     controller = 'User'
     action = 'show'

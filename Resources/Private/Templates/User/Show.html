@@ -6,7 +6,7 @@
         <f:flashMessages class="flashmessages"/>
         <f:form action="update" object="{user}" objectName="user">
             <fieldset>
-                <f:render partial="User/Name" arguments="{_all}"/>
+                <f:render partial="User/NameFormFields" arguments="{_all}"/>
                 <label for="username">Username</label>
                 <f:form.textfield id="username" value="{account.accountIdentifier}" readonly="readonly"/>
             </fieldset>
