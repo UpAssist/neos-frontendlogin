@@ -7,8 +7,9 @@
         <f:form action="update" object="{user}" objectName="user">
             <fieldset>
                 <f:render partial="User/NameFormFields" arguments="{_all}"/>
-                <label for="username">Username</label>
-                <f:form.textfield id="username" value="{account.accountIdentifier}" readonly="readonly"/>
+            </fieldset>
+            <fieldset>
+                <f:render partial="User/ElectronicAddress/FormFields" arguments="{_all}" />
             </fieldset>
             <f:form.button type="submit">Update</f:form.button>
         </f:form>

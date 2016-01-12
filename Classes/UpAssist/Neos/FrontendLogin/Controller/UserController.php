@@ -8,7 +8,7 @@ namespace UpAssist\Neos\FrontendLogin\Controller;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Mvc\Controller\ActionController;
 use TYPO3\Neos\Domain\Model\User;
-use UpAssist\Neos\FrontendLogin\Domain\Repository\UserRepository;
+use TYPO3\Neos\Domain\Repository\UserRepository;
 use UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService;
 use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\UserRegistrationDto;
 

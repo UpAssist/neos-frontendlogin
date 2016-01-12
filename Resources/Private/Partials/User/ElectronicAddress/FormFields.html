@@ -1,0 +1,17 @@
+<f:if condition="{user.electronicAddresses -> f:count()}">
+    <f:then>
+        <f:for each="{user.electronicAddresses}" key="index" as="electronicAddress">
+            <label for="emailAddress.{index}">
+                {electronicAddress.type}
+            </label>
+            <f:form.textfield id="emailAddress.{index}" property="electronicAddresses.{index}.identifier"
+                              value="{electronicAddress.identifier}"/>
+            <f:form.hidden property="primaryElectronicAddress" value="{electronicAddress}"/>
+        </f:for>
+    </f:then>
+    <f:else>
+        <label for="emailAddress">Email</label>
+        <f:form.textfield id="emailAddress" property="electronicAddresses.0.identifier" placeholder="john@example.com"/>
+        <f:form.hidden property="electronicAddresses.0.type" value="Email"/>
+    </f:else>
+</f:if>
