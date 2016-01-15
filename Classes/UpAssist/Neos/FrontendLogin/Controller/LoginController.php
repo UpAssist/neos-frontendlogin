@@ -38,8 +38,11 @@ class LoginController extends AbstractAuthenticationController
 
         /** @var NodeInterface $logoutRedirectNode */
         $logoutRedirectNode = $this->request->getInternalArgument('__logoutRedirectNode');
-
         if ($logoutRedirectNode !== null) {
+            $referer = $this->request->getReferringRequest();
+            if ($referer->getControllerPackageKey() === 'TYPO3.Neos') {
+                $this->redirect($referer->getControllerActionName(), $referer->getControllerName(), $referer->getControllerPackageKey(), $referer->getArguments());
+            }
             $this->redirectToUri($logoutRedirectNode);
         }
 

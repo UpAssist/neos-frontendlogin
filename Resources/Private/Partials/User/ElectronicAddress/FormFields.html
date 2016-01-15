@@ -6,6 +6,7 @@
             </label>
             <f:form.textfield id="emailAddress.{index}" property="electronicAddresses.{index}.identifier"
                               value="{electronicAddress.identifier}"/>
+            <f:form.hidden property="electronicAddresses.{index}.type" value="Email"/>
             <f:form.hidden property="primaryElectronicAddress" value="{electronicAddress}"/>
         </f:for>
     </f:then>

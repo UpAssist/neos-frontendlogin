@@ -7,7 +7,7 @@ privilegeTargets:
     'UpAssist.Neos.FrontendLogin:RegistrationForm':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
     'UpAssist.Neos.FrontendLogin:UserProfile':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show)Action())'
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show|update)Action())'
     'UpAssist.Neos.FrontendLogin:UserIndex':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(index)Action())'
     'UpAssist.Neos.FrontendLogin:CanDeleteUsers':

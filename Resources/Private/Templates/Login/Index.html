@@ -3,7 +3,13 @@
         <p>The Frontend User Login Form is disabled in backend mode.</p>
     </f:then>
     <f:else>
-        <f:flashMessages class="flashmessages"/>
+        <f:flashMessages as="flashMessages">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <div data-alert class="alert-box {flashMessage.severity}">
+                    {flashMessage.message}
+                </div>
+            </f:for>
+        </f:flashMessages>
         <f:security.ifHasRole role="UpAssist.Neos.FrontendLogin:User">
             <f:then>
                 <p>You're logged in as <strong>"{account.accountIdentifier}"</strong></p>
