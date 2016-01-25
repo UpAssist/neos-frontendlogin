@@ -6,6 +6,22 @@
                 <source>Welcome {0}!</source>
                 <target>Welkom {0}!</target>
             </trans-unit>
+            <trans-unit id="login.login" xml:space="preserve">
+                <source>Log in</source>
+                <target>Inloggen</target>
+            </trans-unit>
+            <trans-unit id="login.logout" xml:space="preserve">
+                <source>Log out</source>
+                <target>Uitloggen</target>
+            </trans-unit>
+            <trans-unit id="login.username" xml:space="preserve">
+                <source>Username</source>
+                <target>Gebruikersnaam</target>
+            </trans-unit>
+            <trans-unit id="login.password" xml:space="preserve">
+                <source>Password</source>
+                <target>Wachtwoord</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

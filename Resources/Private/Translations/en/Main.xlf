@@ -5,6 +5,18 @@
             <trans-unit id="login-status.welcome" xml:space="preserve">
                 <source>Welcome {0}!</source>
             </trans-unit>
+            <trans-unit id="login.login" xml:space="preserve">
+                <source>Log in</source>
+            </trans-unit>
+            <trans-unit id="login.logout" xml:space="preserve">
+                <source>Log out</source>
+            </trans-unit>
+            <trans-unit id="login.username" xml:space="preserve">
+                <source>Username</source>
+            </trans-unit>
+            <trans-unit id="login.password" xml:space="preserve">
+                <source>Password</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
