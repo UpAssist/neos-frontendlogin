@@ -13,12 +13,12 @@
         <f:security.ifHasRole role="UpAssist.Neos.FrontendLogin:User">
             <f:then>
                 <p>You're logged in as <strong>"{account.accountIdentifier}"</strong></p>
-                <f:form action="logout" method="post">
+                <f:form action="logout" method="post" class="logout">
                     <f:form.button type="submit">{f:translate(id:'login.logout', package:'UpAssist.Neos.FrontendLogin')}</f:form.button>
                 </f:form>
             </f:then>
             <f:else>
-                <f:form action="authenticate" method="post">
+                <f:form action="authenticate" method="post" class="login">
                     <label for="username">{f:translate(id:'login.username', package:'UpAssist.Neos.FrontendLogin')}</label>
                     <input name="__authentication[TYPO3][Flow][Security][Authentication][Token][UsernamePassword][username]"
                            id="username" type="text"/>
