@@ -1,25 +1,21 @@
----
 
 'UpAssist.Neos.FrontendLogin:RegistrationForm':
-  superTypes: 
-    'TYPO3.Neos:Plugin': true
-    'UpAssist.Neos.FrontendLogin:RedirectMixin': true
+  superTypes:
+    'TYPO3.Neos:Plugin': '1'
+    'UpAssist.Neos.FrontendLogin:RedirectMixin': '1'
   ui:
     label: 'Registration form'
-    icon: 'icon-key'
-
+    icon: icon-key
 'UpAssist.Neos.FrontendLogin:LoginForm':
   superTypes:
-    'TYPO3.Neos:Plugin': true
-    'UpAssist.Neos.FrontendLogin:RedirectMixin': true
+    'TYPO3.Neos:Plugin': '1'
+    'UpAssist.Neos.FrontendLogin:RedirectMixin': '1'
   ui:
     label: 'Frontend login form'
-    icon: 'icon-key'
-
+    icon: icon-key
 'UpAssist.Neos.FrontendLogin:Profile':
   superTypes:
-    'TYPO3.Neos:Plugin': true
+    'TYPO3.Neos:Plugin': '1'
   ui:
     label: 'Frontend user profile'
-    icon: 'icon-user'
-
+    icon: icon-user
