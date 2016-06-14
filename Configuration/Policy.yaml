@@ -1,7 +1,6 @@
 privilegeTargets:
 
   'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-
     'UpAssist.Neos.FrontendLogin:LoginForm':
       matcher: 'within(TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController) && method(public .*->(?!initialize).*Action())'
     'UpAssist.Neos.FrontendLogin:RegistrationForm':
