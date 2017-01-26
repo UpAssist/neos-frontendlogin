@@ -26,7 +26,9 @@ class LoginController extends AbstractAuthenticationController
     }
 
     /**
-     * return void
+     *
+     * @Flow\SkipCsrfProtection
+     * @return void
      */
     public function logoutAction()
     {
