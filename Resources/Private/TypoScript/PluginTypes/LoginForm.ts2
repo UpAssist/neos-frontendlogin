@@ -10,4 +10,12 @@ prototype(UpAssist.Neos.FrontendLogin:LoginForm) < prototype(TYPO3.Neos:Plugin) 
     }
     # Set to true if you want to suppress the succesfull login flashmessage
     suppressFlashMessage = false
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+    }
 }

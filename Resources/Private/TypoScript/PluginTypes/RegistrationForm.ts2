@@ -8,4 +8,12 @@ prototype(UpAssist.Neos.FrontendLogin:RegistrationForm) < prototype(TYPO3.Neos:P
     logoutRedirectNode = TYPO3.Neos:NodeUri {
         node = ${q(node).property('logoutRedirectNode')}
     }
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+    }
 }
