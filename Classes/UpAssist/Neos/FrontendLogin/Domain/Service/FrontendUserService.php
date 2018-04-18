@@ -1,4 +1,5 @@
 <?php
+
 namespace UpAssist\Neos\FrontendLogin\Domain\Service;
 
 /*                                                                             *
@@ -29,6 +30,30 @@ class FrontendUserService extends UserService
             $account = $this->securityContext->getAccount();
             if ($account !== null) {
                 return $account;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $value
+     * @return string
+     * @throws \TYPO3\Neos\Domain\Exception
+     */
+    public function getAccountIdentifierByLastName($value)
+    {
+        $query = $this->accountRepository->createQuery();
+        $accounts = $query->matching(
+            $query->logicalAnd(
+                $query->equals('authenticationProviderName', $this->defaultAuthenticationProviderName)
+            )
+        )->execute()->toArray();
+
+        /** @var Account $account */
+        foreach ($accounts as $account) {
+            if ($this->getUser($account->getAccountIdentifier())->getName()->getLastName() === $value) {
+                return $account->getAccountIdentifier();
             }
         }
 
