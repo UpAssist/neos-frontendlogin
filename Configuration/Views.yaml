@@ -2,6 +2,6 @@
   requestFilter: 'isController("Module\Users")'
   options:
     layoutRootPaths:
-      'UpAssist\Neos\FrontendLogin': 'resource://TYPO3.Neos/Private/Layouts'
+      'UpAssist\Neos\FrontendLogin': 'resource://Neos.Neos/Private/Layouts'
     partialRootPaths:
-      'UpAssist\Neos\FrontendLogin': 'resource://TYPO3.Neos/Private/Partials'
+      'UpAssist\Neos\FrontendLogin': 'resource://Neos.Neos/Private/Partials'

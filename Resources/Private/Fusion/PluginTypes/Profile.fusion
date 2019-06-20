@@ -1,0 +1,13 @@
+prototype(UpAssist.Neos.FrontendLogin:Profile) < prototype(Neos.Neos:Plugin) {
+    package = 'UpAssist.Neos.FrontendLogin'
+    controller = 'User'
+    action = 'show'
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+    }
+}

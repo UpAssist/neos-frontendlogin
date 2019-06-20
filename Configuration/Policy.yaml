@@ -1,8 +1,8 @@
 privilegeTargets:
 
-  'TYPO3\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
     'UpAssist.Neos.FrontendLogin:LoginForm':
-      matcher: 'within(TYPO3\Flow\Security\Authentication\Controller\AbstractAuthenticationController) && method(public .*->(?!initialize).*Action())'
+      matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) && method(public .*->(?!initialize).*Action())'
     'UpAssist.Neos.FrontendLogin:RegistrationForm':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
     'UpAssist.Neos.FrontendLogin:UserProfile':
@@ -21,7 +21,7 @@ privilegeTargets:
 
 roles:
 
-  'TYPO3.Flow:Everybody':
+  'Neos.Flow:Everybody':
     privileges:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:LoginForm'
@@ -40,7 +40,7 @@ roles:
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:RestrictNode'
         permission: GRANT
 
-  'TYPO3.Neos:Editor':
+  'Neos.Neos:Editor':
     privileges:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'

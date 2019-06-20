@@ -1,0 +1,13 @@
+prototype(UpAssist.Neos.FrontendLogin:LoginStatus) < prototype(Neos.Fusion:Template) {
+    templatePath = 'resource://UpAssist.Neos.FrontendLogin/Private/Templates/User/Status.html'
+    account = ${Security.getAccount()}
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+    }
+}
