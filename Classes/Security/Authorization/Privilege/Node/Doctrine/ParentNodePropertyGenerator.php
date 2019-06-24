@@ -43,7 +43,7 @@ class ParentNodePropertyGenerator implements SqlGeneratorInterface
     public function getSql(DoctrineSqlFilter $sqlFilter, ClassMetadata $targetEntity, $targetTableAlias)
     {
         return '(
-          SELECT COUNT(*) FROM typo3_typo3cr_domain_model_nodedata as parent
+          SELECT COUNT(*) FROM neos_contentrepository_domain_model_nodedata as parent
           WHERE ' . $targetTableAlias . '.path LIKE CONCAT(parent.path, "%")
           AND ' . $this->expression->getSql($sqlFilter, $targetEntity, 'parent') . ')';
     }
