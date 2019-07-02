@@ -8,42 +8,24 @@ namespace UpAssist\Neos\FrontendLogin\Security;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Mvc\RequestInterface;
 use Neos\Flow\Security\RequestPatternInterface;
-
 /**
  * A request pattern that can detect and match "frontend" and "backend" mode
  */
 class NeosRequestPattern implements RequestPatternInterface
 {
-
-    const PATTERN_BACKEND = 'backend';
-    const PATTERN_FRONTEND = 'frontend';
-
     /**
-     * @var boolean
+     * @var array
      */
-    protected $shouldMatchBackend = TRUE;
-
+    protected $options;
     /**
-     * Returns the set pattern
+     * Expects options in the form array('matchFrontend' => TRUE/FALSE)
      *
-     * @return string The set pattern
+     * @param array $options
      */
-    public function getPattern()
+    public function __construct(array $options)
     {
-        return $this->shouldMatchBackend ? self::PATTERN_BACKEND : self::PATTERN_FRONTEND;
+        $this->options = $options;
     }
-
-    /**
-     * Sets the pattern (match) configuration
-     *
-     * @param object $pattern The pattern (match) configuration
-     * @return void
-     */
-    public function setPattern($pattern)
-    {
-        $this->shouldMatchBackend = ($pattern === self::PATTERN_FRONTEND) ? FALSE : TRUE;
-    }
-
     /**
      * Matches a \Neos\Flow\Mvc\RequestInterface against its set pattern rules
      *
@@ -53,11 +35,13 @@ class NeosRequestPattern implements RequestPatternInterface
     public function matchRequest(RequestInterface $request)
     {
         if (!$request instanceof ActionRequest) {
-            return FALSE;
+            return false;
         }
-        $requestPath = $request->getHttpRequest()->getUri()->getPath();
-        $requestPathMatchesBackend = substr($requestPath, 0, 5) === '/neos' || strpos($requestPath, '@') !== FALSE;
-        return $this->shouldMatchBackend === $requestPathMatchesBackend;
-    }
 
+        $shouldMatchFrontend = isset($this->options['matchFrontend']) && $this->options['matchFrontend'] === true;
+        $requestPath = $request->getHttpRequest()->getUri()->getPath();
+        $requestPathMatchesBackend = substr($requestPath, 0, 5) === '/neos' || strpos($requestPath, '@') !== false;
+
+        return $shouldMatchFrontend !== $requestPathMatchesBackend;
+    }
 }

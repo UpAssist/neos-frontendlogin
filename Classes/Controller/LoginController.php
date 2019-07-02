@@ -10,6 +10,7 @@ use Neos\Error\Messages\Message;
 use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 
 /**
  * Controller for displaying login/logout forms and a profile for authenticated users

@@ -2,7 +2,7 @@ privilegeTargets:
 
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
     'UpAssist.Neos.FrontendLogin:LoginForm':
-      matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) && method(public .*->(?!initialize).*Action())'
+      matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) || method(UpAssist\Neos\FrontendLogin\Controller\LogingController->(?!initialize).*Action())'
     'UpAssist.Neos.FrontendLogin:RegistrationForm':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
     'UpAssist.Neos.FrontendLogin:UserProfile':

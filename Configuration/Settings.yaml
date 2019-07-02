@@ -6,11 +6,16 @@ Neos:
         providers:
           'Neos.Neos:Backend':
             requestPatterns:
-              UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern: backend
+              'UpAssist.Neos.FrontendLogin:Backend':
+                pattern: UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern
           'UpAssist.Neos.FrontendLogin:Frontend':
             provider: PersistedUsernamePasswordProvider
             requestPatterns:
-              UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern: frontend
+              'UpAssist.Neos.FrontendLogin:Frontend':
+                pattern: UpAssist\Neos\FrontendLogin\Security\NeosRequestPattern
+                patternOptions:
+                  matchFrontend: true
+
     aop:
       globalObjects:
         frontendUserService: UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService
