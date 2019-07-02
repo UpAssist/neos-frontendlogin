@@ -3,6 +3,8 @@
 <f:layout name="BackendSubModule"/>
 
 <f:section name="content">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/v4-shims.css">
     <div class="neos-row-fluid">
         <table class="neos-table">
             <thead>
@@ -18,7 +20,7 @@
                         <td title="{user.alias}">{user.name}</td>
                         <td>
                             <f:for each="{user.accounts}" as="account">
-                                <i class="icon-user icon-white"></i>{account.accountIdentifier} (
+                                <i class="fas fa-user fa-white"></i>{account.accountIdentifier} (
                                 <f:render partial="Module/Shared/Roles" arguments="{roles: account.roles}"/>
                                 )
                             </f:for>
@@ -28,25 +30,25 @@
                                 <f:link.action action="show" arguments="{user: user}"
                                                class="neos-button neos-button-primary"
                                                title="{neos:backend.translate(id: 'clickToView', value: 'Click to view')}">
-                                    <i class="icon-info-sign icon-white"></i>
+                                    <i class="fa fa-info-circle fa-white"></i>
                                 </f:link.action>
                                 <f:link.action action="edit" arguments="{user: user}"
                                                class="neos-button neos-button-primary"
                                                title="{neos:backend.translate(id: 'clickToEdit', value: 'Click to edit')}">
-                                    <i class="icon-pencil icon-white"></i>
+                                    <i class="fa fa-pencil fa-white"></i>
                                 </f:link.action>
 
                                 <f:if condition="{currentUser} == {user}">
                                     <f:then>
                                         <button class="neos-button neos-button-danger neos-disabled"
                                                 title="{neos:backend.translate(id: 'users.youCannotDeleteYourself', value: 'You are logged in as this user and you cannot delete yourself.')}">
-                                            <i class="icon-trash icon-white"></i></button>
+                                            <i class="fas fa-trash fa-white"></i></button>
                                     </f:then>
                                     <f:else>
                                         <button class="neos-button neos-button-danger"
                                                 title="{neos:backend.translate(id: 'clickToDelete', value: 'Click to delete')}"
                                                 data-toggle="modal" href="#user-{index}">
-                                            <i class="icon-trash icon-white"></i>
+                                            <i class="fas fa-trash fa-white"></i>
                                         </button>
                                         <div class="neos-hide" id="user-{index}">
                                             <div class="neos-modal">
