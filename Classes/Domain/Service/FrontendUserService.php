@@ -8,6 +8,7 @@ namespace UpAssist\Neos\FrontendLogin\Domain\Service;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
+use Neos\Neos\Domain\Model\User;
 use Neos\Neos\Domain\Service\UserService;
 
 /**
@@ -58,5 +59,19 @@ class FrontendUserService extends UserService
         }
 
         return null;
+    }
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @param User $user
+     * @param array|null $roleIdentifiers
+     * @param null $authenticationProviderName
+     * @return User
+     */
+    public function addUser($username, $password, User $user, array $roleIdentifiers = null, $authenticationProviderName = null)
+    {
+        return parent::addUser($username, $password, $user, $roleIdentifiers, $authenticationProviderName);
+        // TODO: Prevent duplicates (now nasty sql error)
     }
 }

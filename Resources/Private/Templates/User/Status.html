@@ -5,9 +5,11 @@
         The Frontend User Login Status is disabled in backend mode.
     </f:then>
     <f:else>
-        <f:alias map="{user: '{account -> user:userByAccount()}'}">
-            <f:translate id="login-status.welcome" package="UpAssist.Neos.FrontendLogin"
-                         arguments="{0:'{user.name.firstName} {user.name.lastName}'}"></f:translate>
-        </f:alias>
+        <f:if condition="{account}">
+            <f:alias map="{user: '{account -> user:userByAccount()}'}">
+                <f:translate id="login-status.welcome" package="UpAssist.Neos.FrontendLogin"
+                             arguments="{0:'{user.name.firstName} {user.name.lastName}'}"></f:translate>
+            </f:alias>
+        </f:if>
     </f:else>
 </f:security.ifAccess>

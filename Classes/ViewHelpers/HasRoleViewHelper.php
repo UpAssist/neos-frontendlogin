@@ -3,6 +3,7 @@ namespace UpAssist\Neos\FrontendLogin\ViewHelpers;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
+use Neos\Flow\Security\Exception\NoSuchRoleException;
 use Neos\Flow\Security\Policy\PolicyService;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 use Neos\Neos\Domain\Model\User;
@@ -14,7 +15,7 @@ use Neos\Neos\Domain\Model\User;
 class HasRoleViewHelper extends AbstractViewHelper
 {
 
-    
+
 	/**
 	 * NOTE: This property has been introduced via code migration to ensure backwards-compatibility.
 	 * @see AbstractViewHelper::isOutputEscapingEnabled()
@@ -28,23 +29,34 @@ class HasRoleViewHelper extends AbstractViewHelper
      */
     protected $policyService;
 
+
     /**
-     * @param User|null $user
-     * @param $role
-     * @return bool
-     * @throws \Neos\Flow\Security\Exception\NoSuchRoleException
+     * @throws \Neos\FluidAdaptor\Core\ViewHelper\Exception
      */
-    public function render(User $user = null, $role)
+    public function initializeArguments()
     {
-        if ($user === null) {
-            $user = $this->renderChildren();
+        $this->registerArgument('user', 'Neos\Neos\Domain\Model\User', 'The user');
+        $this->registerArgument('role', 'string', 'The user role', TRUE);
+        parent::initializeArguments();
+    }
+
+    /**
+     * @return boolean
+     * @throws NoSuchRoleException
+     */
+    public function render()
+    {
+        if ($this->arguments['user'] === null) {
+            $this->arguments['user'] = $this->renderChildren();
         }
 
+        $user = $this->arguments['user'];
         /** @var Account $account */
         foreach ($user->getAccounts() as $account) {
-            if ($account->hasRole($this->policyService->getRole($role))) return true;
+            if ($account->hasRole($this->policyService->getRole($this->arguments['role']))) return true;
         }
 
         return false;
     }
+
 }

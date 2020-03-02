@@ -61,18 +61,13 @@ class UserController extends ActionController
     /**
      * @param UserRegistrationDto $newUser
      * @return void
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
      */
     public function createAction(UserRegistrationDto $newUser)
     {
-        $this->userService->addUser($newUser->getUser(), $newUser->getUsername(), $newUser->getPassword());
+        $this->userService->addUser($newUser->getUsername(), $newUser->getPassword(), $newUser->getUser(), ['UpAssist.Neos.FrontendLogin:User']);
         $this->addFlashMessage('Your account has been created, you can login now.');
 
-//        $arguments = [
-//            '__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]' => $newUser->getUsername(),
-//            '__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]' => $newUser->getPassword()
-//        ];
-
-//        null, $arguments
         $this->redirect('index', 'login');
     }
 
@@ -86,7 +81,8 @@ class UserController extends ActionController
 
     /**
      * @param User $user
-     * @throws \Neos\Flow\Persistence\Exception\IllegalObjectTypeException
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws \Neos\Neos\Domain\Exception
      */
     public function deleteAction(User $user)
     {

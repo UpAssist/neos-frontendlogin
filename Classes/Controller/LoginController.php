@@ -30,6 +30,14 @@ class LoginController extends AbstractAuthenticationController
      *
      * @Flow\SkipCsrfProtection
      * @return void
+     * @throws \Neos\Flow\Mvc\Exception\InvalidActionNameException
+     * @throws \Neos\Flow\Mvc\Exception\InvalidArgumentNameException
+     * @throws \Neos\Flow\Mvc\Exception\InvalidArgumentTypeException
+     * @throws \Neos\Flow\Mvc\Exception\InvalidControllerNameException
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws \Neos\Flow\Mvc\Exception\UnsupportedRequestTypeException
+     * @throws \Neos\Flow\Security\Exception\InvalidArgumentForHashGenerationException
+     * @throws \Neos\Flow\Security\Exception\InvalidHashException
      */
     public function logoutAction()
     {
@@ -55,6 +63,8 @@ class LoginController extends AbstractAuthenticationController
     /**
      * @param ActionRequest $originalRequest The request that was intercepted by the security framework, NULL if there was none
      * @return string
+     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws \Neos\Flow\Mvc\Exception\UnsupportedRequestTypeException
      */
     protected function onAuthenticationSuccess(ActionRequest $originalRequest = NULL)
     {
