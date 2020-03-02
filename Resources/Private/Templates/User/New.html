@@ -7,9 +7,16 @@
         <label for="lastName">Lastname</label>
         <f:form.textfield property="user.name.lastName" id="lastName"/>
     </fieldset>
-    <label for="username">username</label>
-    <f:form.textfield property="username" id="username"/>
-    <label for="password">password</label>
-    <f:form.password property="password" id="password"/>
+    <fieldset>
+        <label for="username">username</label>
+        <f:form.textfield property="username" id="username"/>
+        <label for="password">password</label>
+        <f:form.password property="password" id="password"/>
+    </fieldset>
     <f:form.button type="submit">Sign up</f:form.button>
 </f:form>
+
+<!--
+    @Todo: password verify
+    @Todo: email address as username
+-->
