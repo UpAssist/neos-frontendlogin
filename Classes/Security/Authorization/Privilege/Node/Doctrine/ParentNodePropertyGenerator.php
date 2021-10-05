@@ -10,11 +10,8 @@ namespace UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\Doct
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-use Doctrine\ORM\Query\Filter\SQLFilter as DoctrineSqlFilter;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\SqlGeneratorInterface;
-use Doctrine\ORM\Query\Expr;
 
 /**
  * A sql generator to create a sql subquery.
@@ -34,13 +31,13 @@ class ParentNodePropertyGenerator implements SqlGeneratorInterface
         $this->expression = $expression;
     }
 
-    /**
-     * @param DoctrineSqlFilter $sqlFilter
-     * @param ClassMetadata $targetEntity Metadata object for the target entity to create the constraint for
-     * @param string $targetTableAlias The target table alias used in the current query
-     * @return string
-     */
-    public function getSql(DoctrineSqlFilter $sqlFilter, ClassMetadata $targetEntity, $targetTableAlias)
+  /**
+   * @param \Doctrine\ORM\Query\Filter\SQLFilter $sqlFilter
+   * @param \Doctrine\Persistence\Mapping\ClassMetadata $targetEntity Metadata object for the target entity to create the constraint for
+   * @param string $targetTableAlias The target table alias used in the current query
+   * @return string
+   */
+    public function getSql(\Doctrine\ORM\Query\Filter\SQLFilter $sqlFilter, \Doctrine\Persistence\Mapping\ClassMetadata $targetEntity, $targetTableAlias)
     {
         return '(
           SELECT COUNT(*) FROM neos_contentrepository_domain_model_nodedata as parent
