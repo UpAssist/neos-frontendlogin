@@ -11,8 +11,6 @@ privilegeTargets:
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(index)Action())'
     'UpAssist.Neos.FrontendLogin:CanDeleteUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
-    'UpAssist.Neos.FrontendLogin:CanAdministerUsers':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\Module\UsersController->(index|show|new|create|edit|update|delete|newElectronicAddress|createElectronicAddress|deleteElectronicAddress|editAccount|updateAccount)Action())'
 
   'UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\ReadNodePrivilege':
 
@@ -50,9 +48,6 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanDeleteUsers'
-        permission: GRANT
-      -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
         permission: GRANT
       -
         # Grant "frontend users" access to Nodes with property "restricted" == true

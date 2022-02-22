@@ -1,0 +1,6 @@
+UpAssist.Neos.FrontendLogin:Plugin.Profile:
+  superTypes:
+    Neos.Neos:Plugin: true
+  ui:
+    label: 'Profile'
+    icon: icon-user

@@ -1,0 +1,7 @@
+UpAssist.Neos.FrontendLogin:Plugin.LoginForm:
+  superTypes:
+    Neos.Neos:Plugin: true
+    UpAssist.Neos.FrontendLogin:Mixin.Redirect: true
+  ui:
+    label: 'Login form'
+    icon: icon-key

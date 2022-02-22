@@ -1,0 +1,15 @@
+UpAssist.Neos.FrontendLogin:Mixin.Redirect:
+  abstract: true
+  properties:
+    redirectNode:
+      type: reference
+      ui:
+        label: 'Redirect to (upon login)'
+        inspector:
+          group: 'pluginSettings'
+    logoutRedirectNode:
+      type: reference
+      ui:
+        label: 'Redirect to (upon logout)'
+        inspector:
+          group: 'pluginSettings'

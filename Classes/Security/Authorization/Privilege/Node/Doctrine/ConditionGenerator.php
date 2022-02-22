@@ -1,7 +1,7 @@
 <?php
+
 namespace UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\Doctrine;
 
-use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\FalseConditionGenerator;
 use Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\PropertyConditionGenerator;
 
@@ -24,10 +24,11 @@ class ConditionGenerator extends \Neos\ContentRepository\Security\Authorization\
         }
         return $propertyConditionGenerator->like('%"' . trim($property) . '": ' . json_encode($value) . '%');
     }
+
     /**
      * @param string $property
      * @param mixed $value
-     * @return PropertyConditionGenerator
+     * @return ParentNodePropertyGenerator
      */
     public function parentNodePropertyIs($property, $value)
     {

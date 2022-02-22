@@ -1,0 +1,7 @@
+'UpAssist.Neos.FrontendLogin:Plugin.RegistrationForm':
+  superTypes:
+    'Neos.Neos:Plugin': true
+    'UpAssist.Neos.FrontendLogin:Mixin.Redirect': true
+  ui:
+    label: 'Registration form'
+    icon: icon-key

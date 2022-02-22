@@ -1,10 +1,12 @@
-prototype(UpAssist.Neos.FrontendLogin:RegistrationForm) < prototype(Neos.Neos:Plugin) {
+prototype(UpAssist.Neos.FrontendLogin:Plugin.RegistrationForm) < prototype(Neos.Neos:Plugin) {
     package = 'UpAssist.Neos.FrontendLogin'
     controller = 'User'
     action = 'new'
+
     redirectNode = Neos.Neos:NodeUri {
         node = ${q(node).property('redirectNode')}
     }
+
     logoutRedirectNode = Neos.Neos:NodeUri {
         node = ${q(node).property('logoutRedirectNode')}
     }

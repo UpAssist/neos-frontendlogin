@@ -1,13 +1,13 @@
 {
     "name": "upassist/neos-frontendlogin",
     "type": "neos-package",
-    "description": "Add description here",
+    "description": "",
     "require": {
         "neos/neos": "*"
     },
     "autoload": {
         "psr-4": {
-            "UpAssist\\Neos\\FrontendLogin\\": "Classes"
+            "UpAssist\\Neos\\FrontendLogin\\": "Classes/"
         }
     },
     "extra": {

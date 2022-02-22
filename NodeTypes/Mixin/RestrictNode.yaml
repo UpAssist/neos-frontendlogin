@@ -1,0 +1,10 @@
+UpAssist.Neos.FrontendLogin:Mixin.RestrictNode:
+  abstract: true
+  properties:
+    restrictNode:
+      type: boolean
+      ui:
+        label: 'Restrict this node (and all child nodes) to logged in users only'
+        inspector:
+          group: 'visibility'
+          position: 100

@@ -20,17 +20,6 @@ Neos:
       globalObjects:
         frontendUserService: UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService
   Neos:
-    modules:
-      frontendUsers:
-        label: 'Neos.Neos:Modules:users.label'
-        controller: UpAssist\Neos\FrontendLogin\Controller\Module\UsersController
-        description: 'Neos.Neos:Modules:users.description'
-        icon: icon-group
-        actions:
-          new:
-            label: 'Neos.Neos:Modules:users.actions.new.label'
-            title: 'Neos.Neos:Modules:users.actions.new.title'
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanAdministerUsers'
     fusion:
       autoInclude:
         UpAssist.Neos.FrontendLogin: true
@@ -38,4 +27,4 @@ Neos:
         translation:
           autoInclude:
             UpAssist.Neos.FrontendLogin:
-              - 'NodeTypes/*'
+              - Main
