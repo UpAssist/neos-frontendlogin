@@ -19,6 +19,9 @@ Neos:
     aop:
       globalObjects:
         frontendUserService: UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService
+    mvc:
+      routes:
+        UpAssist.Neos.FrontendLogin: true
   Neos:
     fusion:
       autoInclude:
