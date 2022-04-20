@@ -1,0 +1,52 @@
+up:
+  comments: 'Moves Login elements to plugins'
+  migration:
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'UpAssist.Neos.FrontendLogin:LoginForm'
+      transformations:
+        -
+          type: ChangeNodeType
+          settings:
+            newType: 'UpAssist.Neos.FrontendLogin:Plugin.LoginForm'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'UpAssist.Neos.FrontendLogin:Profile'
+      transformations:
+        -
+          type: ChangeNodeType
+          settings:
+            newType: 'UpAssist.Neos.FrontendLogin:Plugin.Profile'
+down:
+  comments: 'Preferably do not use this...'
+  migration:
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'UpAssist.Neos.FrontendLogin:Plugin.Profile'
+      transformations:
+        -
+          type: ChangeNodeType
+          settings:
+            newType: 'UpAssist.Neos.FrontendLogin:Profile'
+
+    -
+      filters:
+        -
+          type: 'NodeType'
+          settings:
+            nodeType: 'UpAssist.Neos.FrontendLogin:Plugin.LoginForm'
+      transformations:
+        -
+          type: ChangeNodeType
+          settings:
+            newType: 'UpAssist.Neos.FrontendLogin:LoginForm'
