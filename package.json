@@ -1,14 +1,14 @@
 {
   "name": "upassist-neos-frontendlogin",
-  "version": "7.3.1",
+  "version": "7.4.0",
   "main": "index.js",
   "repository": "git@bitbucket.org:upassist/upassist-neos-frontendlogin.git",
   "author": "Henjo Hoeksma <henjo@upassist.com>",
   "license": "MIT",
   "private": true,
-    "scripts": {
-        "release:minor": "npx standard-version -t '' -r minor && git push --follow-tags origin master",
-        "release:patch": "npx standard-version -t '' -r patch && git push --follow-tags origin master",
-        "release:major": "npx standard-version -t '' -r major && git push --follow-tags origin master"
-    }
+  "scripts": {
+    "release:minor": "npx standard-version -t '' -r minor && git push --follow-tags origin master",
+    "release:patch": "npx standard-version -t '' -r patch && git push --follow-tags origin master",
+    "release:major": "npx standard-version -t '' -r major && git push --follow-tags origin master"
+  }
 }
