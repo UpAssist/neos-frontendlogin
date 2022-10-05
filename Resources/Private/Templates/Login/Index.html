@@ -14,19 +14,19 @@
             <f:then>
                 <p>You're logged in as <strong>"{account.accountIdentifier}"</strong></p>
                 <f:form action="logout" method="post" class="logout">
-                    <f:form.button type="submit">{f:translate(id:'login.logout', package:'UpAssist.Neos.FrontendLogin')}</f:form.button>
+                    <f:form.button type="submit">{f:translate(id:'login.logout', package:'UpAssist.Neos.FrontendLogin', value: 'Log out')}</f:form.button>
                 </f:form>
             </f:then>
             <f:else>
                 <f:form action="authenticate" method="post" class="login">
-                    <label for="username">{f:translate(id:'login.username', package:'UpAssist.Neos.FrontendLogin')}</label>
+                    <label for="username">{f:translate(id:'login.username', package:'UpAssist.Neos.FrontendLogin', value: 'Username')}</label>
                     <input name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]"
-                           id="username" type="text"/>
-                    <label for="password">{f:translate(id:'login.password', package:'UpAssist.Neos.FrontendLogin')}</label>
+                           id="username" type="text" placeholder="{f:translate(id:'login.username', package:'UpAssist.Neos.FrontendLogin', value: 'Username')}"/>
+                    <label for="password">{f:translate(id:'login.password', package:'UpAssist.Neos.FrontendLogin', value: 'Password')}</label>
                     <input name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]"
                            id="password"
-                           type="password"/>
-                    <f:form.button type="submit">{f:translate(id:'login.login', package:'UpAssist.Neos.FrontendLogin')}</f:form.button>
+                           type="password" placeholder="{f:translate(id:'login.password', package:'UpAssist.Neos.FrontendLogin', value: 'Password')}"/>
+                    <f:form.button type="submit">{f:translate(id:'login.login', package:'UpAssist.Neos.FrontendLogin', value: 'Log in')}</f:form.button>
                 </f:form>
             </f:else>
         </f:security.ifHasRole>
