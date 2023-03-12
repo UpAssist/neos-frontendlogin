@@ -3,7 +3,10 @@
     "type": "neos-package",
     "description": "",
     "require": {
-        "neos/neos": "*"
+        "neos/neos": "*",
+        "neos/fusion": "*",
+        "neos/fusion-afx": "*",
+        "neos/fusion-form": "*"
     },
     "autoload": {
         "psr-4": {

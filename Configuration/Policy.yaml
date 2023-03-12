@@ -13,7 +13,6 @@ privilegeTargets:
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
 
   'UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\ReadNodePrivilege':
-
     'UpAssist.Neos.FrontendLogin:RestrictNode':
       matcher: 'nodePropertyIs("restrictNode", true) || parentNodePropertyIs("restrictNode", true)'
 
@@ -29,6 +28,7 @@ roles:
         permission: GRANT
 
   'UpAssist.Neos.FrontendLogin:User':
+    label: 'Frontend User'
     privileges:
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'

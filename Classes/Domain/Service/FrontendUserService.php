@@ -62,6 +62,27 @@ class FrontendUserService extends UserService
     }
 
     /**
+     * @return array
+     */
+    public function findAll(): array
+    {
+        $query = $this->accountRepository->createQuery();
+        $accounts = $query->matching(
+            $query->logicalAnd(
+                $query->equals('authenticationProviderName', $this->defaultAuthenticationProviderName)
+            )
+        )->execute()->toArray();
+        $users = [];
+
+        /** @var Account $account */
+        foreach ($accounts as $account) {
+            $users[] = $this->partyService->getAssignedPartyOfAccount($account);
+        }
+
+        return $users;
+    }
+
+    /**
      * @param string $username
      * @param string $password
      * @param User $user

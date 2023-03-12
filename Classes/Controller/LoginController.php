@@ -11,17 +11,22 @@ use Neos\Flow\Mvc\ActionRequest;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
+use Neos\Fusion\View\FusionView;
 
 /**
  * Controller for displaying login/logout forms and a profile for authenticated users
  */
 class LoginController extends AbstractAuthenticationController
 {
+    /**
+     * @var string
+     */
+    protected $defaultViewObjectName = FusionView::class;
 
     /**
      * @return void
      */
-    public function indexAction()
+    public function loginAction()
     {
         $this->view->assign('account', $this->securityContext->getAccount());
     }
@@ -41,11 +46,12 @@ class LoginController extends AbstractAuthenticationController
      */
     public function logoutAction()
     {
-        parent::logoutAction();
 
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
             $this->addFlashMessage('Successfully logged out', 'Logged out', Message::SEVERITY_NOTICE);
         }
+
+        $this->authenticationManager->logout();
 
         /** @var NodeInterface $logoutRedirectNode */
         $logoutRedirectNode = $this->request->getInternalArgument('__logoutRedirectNode');
@@ -79,7 +85,7 @@ class LoginController extends AbstractAuthenticationController
             $this->redirectToUri($redirectNode);
         }
 
-        $this->redirect('index');
+        $this->redirect('status');
     }
 
     /**

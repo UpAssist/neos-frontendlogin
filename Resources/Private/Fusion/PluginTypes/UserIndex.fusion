@@ -1,8 +1,8 @@
-prototype(UpAssist.Neos.FrontendLogin:Plugin.Profile) < prototype(Neos.Neos:Plugin) {
+prototype(UpAssist.Neos.FrontendLogin:Plugin.UserIndex) < prototype(Neos.Neos:Plugin) {
   package = 'UpAssist.Neos.FrontendLogin'
   controller = 'User'
-  action = 'show'
-  argumentNamespace = 'profile'
+  action = 'index'
+  argumentNamespace = 'users'
 
   @cache {
     mode = 'uncached'
@@ -10,7 +10,7 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.Profile) < prototype(Neos.Neos:Plug
       1 = 'node'
       2 = 'documentNode'
       3 = 'site'
-      4 = 'user'
+      4 = 'users'
     }
   }
 }

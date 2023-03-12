@@ -1,19 +1,28 @@
 <p>Just fill out the following form to create a new user:</p>
 
 <f:form action="create" objectName="newUser">
-    <fieldset>
-        <label for="firstName">Firstname</label>
-        <f:form.textfield property="user.name.firstName" id="firstName"/>
-        <label for="lastName">Lastname</label>
-        <f:form.textfield property="user.name.lastName" id="lastName"/>
-    </fieldset>
-    <fieldset>
-        <label for="username">username</label>
-        <f:form.textfield property="username" id="username"/>
-        <label for="password">password</label>
-        <f:form.password property="password" id="password"/>
-    </fieldset>
-    <f:form.button type="submit">Sign up</f:form.button>
+	<fieldset>
+		<label for="firstName">Firstname</label>
+		<f:form.textfield property="user.name.firstName" id="firstName"/>
+		<label for="lastName">Lastname</label>
+		<f:form.textfield property="user.name.lastName" id="lastName"/>
+	</fieldset>
+	<fieldset>
+		<label for="username">username</label>
+		<f:form.textfield property="username" id="username"/>
+		<label for="password">password</label>
+		<f:form.password property="password" id="password"/>
+	</fieldset>
+	<fieldset>
+		<f:render partial="User/ElectronicAddress/FormFields" arguments="{_all}"/>
+	</fieldset>
+	<f:if condition="{roleIdentifiers}">
+		<fieldset>
+			<f:form.select property="roleIdentifier" options="{roleIdentifiers}" optionValueField="key"
+										 optionLabelField="value"/>
+		</fieldset>
+	</f:if>
+	<f:form.button type="submit">Sign up</f:form.button>
 </f:form>
 
 <!--

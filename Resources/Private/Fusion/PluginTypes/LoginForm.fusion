@@ -1,16 +1,26 @@
 prototype(UpAssist.Neos.FrontendLogin:Plugin.LoginForm) < prototype(Neos.Neos:Plugin) {
-    package = 'UpAssist.Neos.FrontendLogin'
-    controller = 'Login'
-    action = 'index'
+  package = 'UpAssist.Neos.FrontendLogin'
+  controller = 'Login'
+  action = 'login'
+  argumentNamespace = 'login'
 
-    redirectNode = Neos.Neos:NodeUri {
-        node = ${q(node).property('redirectNode')}
+  redirectNode = Neos.Neos:NodeUri {
+    node = ${q(node).property('redirectNode') ? q(node).property('redirectNode') : site}
+  }
+
+  logoutRedirectNode = Neos.Neos:NodeUri {
+    node = ${q(node).property('logoutRedirectNode') ? q(node).property('logoutRedirectNode') : site}
+  }
+
+  # Set to true if you want to suppress the succesfull login flashmessage
+  suppressFlashMessage = false
+
+  @cache {
+    mode = 'uncached'
+    context {
+      1 = 'node'
+      2 = 'documentNode'
+      3 = 'site'
     }
-
-    logoutRedirectNode = Neos.Neos:NodeUri {
-        node = ${q(node).property('logoutRedirectNode')}
-    }
-
-    # Set to true if you want to suppress the succesfull login flashmessage
-    suppressFlashMessage = false
+  }
 }
