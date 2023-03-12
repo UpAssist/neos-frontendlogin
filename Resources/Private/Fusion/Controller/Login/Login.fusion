@@ -1,5 +1,3 @@
 UpAssist.Neos.FrontendLogin.LoginController.login = Neos.Fusion:Component {
-  renderer = afx`
-    <p>Foo</p>
-  `
+  renderer = 'aap'
 }
