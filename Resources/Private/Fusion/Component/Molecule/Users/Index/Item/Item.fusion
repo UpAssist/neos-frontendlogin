@@ -1,0 +1,45 @@
+prototype(UpAssist.Neos.FrontendLogin:Molecule.Users.Index.Item) < prototype(Neos.Fusion:Component) {
+  labels = Neos.Fusion:DataStructure {
+    edit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.Users.Index.Item:action.edit')}
+    delete = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.Users.Index.Item:action.delete')}
+  }
+
+  edit = Neos.Fusion:UriBuilder {
+    package = 'UpAssist.Neos.FrontendLogin'
+    controller = 'User'
+    action = 'edit'
+    arguments {
+      user = ${user}
+    }
+
+    @if.isAllowed = ${Security.hasAccess('UpAssist.Neos.FrontendLogin:CanEditUser')}
+  }
+
+  delete = Neos.Fusion:UriBuilder {
+    package = 'UpAssist.Neos.FrontendLogin'
+    controller = 'User'
+    action = 'delete'
+    arguments {
+      user = ${user}
+    }
+
+    @if.isAllowed = ${Security.hasAccess('UpAssist.Neos.FrontendLogin:CanDeleteUsers')}
+    @if.notIfLoggedInUser = ${FrontendLogin.User.getUserByAccount() != user}
+  }
+
+  renderer  = afx`
+    <article>
+      <span class="user-name">{user.name.firstName} {user.name.lastName}</span>
+      <span class="user-username">{user.accounts[0].accountIdentifier}</span>
+      <span class="user-role">
+          <Neos.Fusion:Loop items={FrontendLogin.User.getUserRolesByAccount(user.accounts[0])}>
+            {item.label}
+          </Neos.Fusion:Loop>
+        </span>
+      <span class="user-actions">
+        <a href={props.edit} @if={props.edit} class="action action--edit">{props.labels.edit}</a>
+        <a href={props.delete} @if={props.delete} class="action action--delete">{props.labels.delete}</a>
+      </span>
+    </article>
+  `
+}

@@ -1,0 +1,53 @@
+UpAssist.Neos.FrontendLogin.UserController.edit = Neos.Fusion:Component {
+  labels = Neos.Fusion:DataStructure {
+    username = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.username')}
+    password = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.password.change')}
+    firstname = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.firstname')}
+    lastname = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.lastname')}
+    role = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.role')}
+    email = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.email')}
+    submit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:button.update')}
+  }
+
+  renderer = afx`
+    <Neos.Fusion.Form:Form
+        form.data.user={user}
+        form.target.controller="User"
+        form.target.action="update"
+    >
+      <fieldset>
+        <label for="username">{props.labels.username}</label>
+        <input type="text" readonly disabled value={user.accounts[0].accountIdentifier} />
+      </fieldset>
+      <fieldset class="user-name">
+        <Neos.Fusion.Form:FieldContainer field.name="user[name][firstName]" label={props.labels.firstname}>
+          <Neos.Fusion.Form:Input/>
+        </Neos.Fusion.Form:FieldContainer>
+        <Neos.Fusion.Form:FieldContainer field.name="user[name][lastName]" label={props.labels.lastname}>
+          <Neos.Fusion.Form:Input/>
+        </Neos.Fusion.Form:FieldContainer>
+      </fieldset>
+      <fieldset>
+        <Neos.Fusion.Form:FieldContainer field.name="user[electronicAddresses][0][identifier]" label={props.labels.email}>
+          <Neos.Fusion.Form:Input />
+        </Neos.Fusion.Form:FieldContainer>
+        <Neos.Fusion.Form:Hidden field.name="user[electronicAddresses][0][type]" field.value="Email"/>
+      </fieldset>
+      <fieldset @if={FrontendLogin.User.getUserByAccount() != user}>
+        <Neos.Fusion.Form:FieldContainer field.name="roleIdentifiers[0]" label={props.labels.role}>
+          <Neos.Fusion.Form:Select>
+            <Neos.Fusion:Loop items={roleIdentifiers}>
+              <Neos.Fusion.Form:Select.Option option.value={item.key} attributes.selected={true} attributes.selected.@if={FrontendLogin.User.hasRole(user, item.key)}>{item.label}</Neos.Fusion.Form:Select.Option>
+            </Neos.Fusion:Loop>
+          </Neos.Fusion.Form:Select>
+        </Neos.Fusion.Form:FieldContainer>
+      </fieldset>
+      <fieldset>
+        <Neos.Fusion.Form:FieldContainer field.name="password" label={props.labels.password}>
+          <Neos.Fusion.Form:Input />
+        </Neos.Fusion.Form:FieldContainer>
+      </fieldset>
+      <Neos.Fusion.Form:Button type="submit">{props.labels.submit}</Neos.Fusion.Form:Button>
+    </Neos.Fusion.Form:Form>
+  `
+}

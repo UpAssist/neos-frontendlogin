@@ -1,0 +1,11 @@
+UpAssist.Neos.FrontendLogin.LoginController.login = Neos.Fusion:Component {
+  renderer = afx`
+    <UpAssist.Neos.FrontendLogin:Component.Molecule.FlashMessages />
+    <Neos.Fusion:Fragment @if={Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
+      <UpAssist.Neos.FrontendLogin:Component.Molecule.Status enableLogoutButton={true} />
+    </Neos.Fusion:Fragment>
+    <Neos.Fusion:Fragment @if={!Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
+      <UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm />
+    </Neos.Fusion:Fragment>
+  `
+}

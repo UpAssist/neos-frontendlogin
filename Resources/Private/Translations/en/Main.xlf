@@ -1,22 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file original="" product-name="UpAssist.Neos.FrontendLogin" source-language="en" datatype="plaintext">
-        <body>
-            <trans-unit id="login-status.welcome" xml:space="preserve">
-                <source>Welcome {0}!</source>
-            </trans-unit>
-            <trans-unit id="login.login" xml:space="preserve">
-                <source>Log in</source>
-            </trans-unit>
-            <trans-unit id="login.logout" xml:space="preserve">
-                <source>Log out</source>
-            </trans-unit>
-            <trans-unit id="login.username" xml:space="preserve">
-                <source>Username</source>
-            </trans-unit>
-            <trans-unit id="login.password" xml:space="preserve">
-                <source>Password</source>
-            </trans-unit>
-        </body>
-    </file>
+  <file original="" product-name="UpAssist.Neos.FrontendLogin" source-language="en" datatype="plaintext">
+    <body>
+      <trans-unit id="label.username">
+        <source>Username</source>
+      </trans-unit>
+      <trans-unit id="label.firstname">
+        <source>Firstname</source>
+      </trans-unit>
+      <trans-unit id="label.lastname">
+        <source>Lastname</source>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>E-mail</source>
+      </trans-unit>
+      <trans-unit id="label.role">
+        <source>Role</source>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>Password</source>
+      </trans-unit>
+      <trans-unit id="label.password.change">
+        <source>Set a new password</source>
+      </trans-unit>
+      <trans-unit id="button.update">
+        <source>Update</source>
+      </trans-unit>
+      <trans-unit id="button.create">
+        <source>Create user</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.logout-success.title">
+        <source>Logged out</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.logout-success.msg">
+        <source>Successfully logged out</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-success.title">
+        <source>Logged in</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-success.msg">
+        <source>Successfully logged in</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-error.title">
+        <source>Login failed</source>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-error.msg">
+        <source>These credentials do not match, please try again.</source>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

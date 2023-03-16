@@ -14,13 +14,4 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.LoginForm) < prototype(Neos.Neos:Pl
 
   # Set to true if you want to suppress the succesfull login flashmessage
   suppressFlashMessage = false
-
-  @cache {
-    mode = 'uncached'
-    context {
-      1 = 'node'
-      2 = 'documentNode'
-      3 = 'site'
-    }
-  }
 }

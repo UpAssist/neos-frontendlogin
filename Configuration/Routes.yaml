@@ -4,6 +4,6 @@
   defaults:
     '@package': 'UpAssist.Neos.FrontendLogin'
     '@controller': 'Login'
-    '@action': 'index'
+    '@action': 'status'
     '@format': 'html'
   appendExceedingArguments: TRUE

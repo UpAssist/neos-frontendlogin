@@ -6,12 +6,14 @@ namespace UpAssist\Neos\FrontendLogin\Controller;
  *                                                                             */
 
 use Neos\Flow\Annotations as Flow;
-use Neos\Error\Messages\Message;
+use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\ActionRequest;
+use Neos\Flow\Mvc\View\ViewInterface;
 use Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
 use Neos\Flow\Security\Exception\AuthenticationRequiredException;
 use Neos\Fusion\View\FusionView;
+use Neos\Error\Messages as Error;
 
 /**
  * Controller for displaying login/logout forms and a profile for authenticated users
@@ -24,10 +26,24 @@ class LoginController extends AbstractAuthenticationController
     protected $defaultViewObjectName = FusionView::class;
 
     /**
+     * @var Translator $translator
+     * @Flow\Inject
+     */
+    protected Translator $translator;
+
+    /**
+     *
+     * @var string $translationPackage
+     * @Flow\InjectConfiguration (path="translationPackage", package="UpAssist.Neos.FrontendLogin")
+     */
+    protected $translationPackage = 'UpAssist.Neos.FrontendLogin';
+
+    /**
      * @return void
      */
     public function loginAction()
     {
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
         $this->view->assign('account', $this->securityContext->getAccount());
     }
 
@@ -48,9 +64,14 @@ class LoginController extends AbstractAuthenticationController
     {
 
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
-            $this->addFlashMessage('Successfully logged out', 'Logged out', Message::SEVERITY_NOTICE);
+            $this->controllerContext->getFlashMessageContainer()->addMessage(
+                new Error\Notice(
+                    $this->translator->translateById('flashMessage.login.logout-success.msg', [],null,null,'Main', $this->translationPackage),
+                    null, [],
+                    $this->translator->translateById('flashMessage.login.logout-success.title', [],null,null,'Main', $this->translationPackage)
+                )
+            );
         }
-
         $this->authenticationManager->logout();
 
         /** @var NodeInterface $logoutRedirectNode */
@@ -63,7 +84,7 @@ class LoginController extends AbstractAuthenticationController
             $this->redirectToUri($logoutRedirectNode);
         }
 
-        $this->redirect('index');
+        $this->redirect('login');
     }
 
     /**
@@ -75,7 +96,13 @@ class LoginController extends AbstractAuthenticationController
     protected function onAuthenticationSuccess(ActionRequest $originalRequest = NULL)
     {
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
-            $this->addFlashMessage('Successfully logged in', 'Logged in');
+            $this->controllerContext->getFlashMessageContainer()->addMessage(
+                new Error\Notice(
+                    $this->translator->translateById('flashMessage.login.login-success.msg', [],null,null,'Main', $this->translationPackage),
+                    null, [],
+                    $this->translator->translateById('flashMessage.login.login-success.title', [],null,null,'Main', $this->translationPackage)
+                )
+            );
         }
 
         /** @var NodeInterface $redirectNode */
@@ -86,6 +113,21 @@ class LoginController extends AbstractAuthenticationController
         }
 
         $this->redirect('status');
+    }
+
+    /**
+     * @param AuthenticationRequiredException|null $exception
+     * @return void
+     */
+    protected function onAuthenticationFailure(AuthenticationRequiredException $exception = null)
+    {
+        $this->controllerContext->getFlashMessageContainer()->addMessage(
+            new Error\Error(
+                $this->translator->translateById('flashMessage.login.login-error.msg', [],null,null,'Main', $this->translationPackage),
+                null, [],
+                $this->translator->translateById('flashMessage.login.login-error.title', [],null,null,'Main', $this->translationPackage)
+            )
+        );
     }
 
     /**

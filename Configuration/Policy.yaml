@@ -1,13 +1,15 @@
 privilegeTargets:
 
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
-    'UpAssist.Neos.FrontendLogin:LoginForm':
-      matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) || method(UpAssist\Neos\FrontendLogin\Controller\LogingController->(?!initialize).*Action())'
-    'UpAssist.Neos.FrontendLogin:RegistrationForm':
+    'UpAssist.Neos.FrontendLogin:CanLogin':
+      matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) || method(UpAssist\Neos\FrontendLogin\Controller\LoginController->(?!initialize).*Action())'
+    'UpAssist.Neos.FrontendLogin:CanCreateUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
-    'UpAssist.Neos.FrontendLogin:UserProfile':
+    'UpAssist.Neos.FrontendLogin:CanShowUser':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show|update)Action())'
-    'UpAssist.Neos.FrontendLogin:UserIndex':
+    'UpAssist.Neos.FrontendLogin:CanEditUser':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(update|edit)Action())'
+    'UpAssist.Neos.FrontendLogin:CanListUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(index)Action())'
     'UpAssist.Neos.FrontendLogin:CanDeleteUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
@@ -21,17 +23,20 @@ roles:
   'Neos.Flow:Everybody':
     privileges:
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:LoginForm'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanLogin'
         permission: GRANT
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:RegistrationForm'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanCreateUsers'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanShowUser'
         permission: GRANT
 
   'UpAssist.Neos.FrontendLogin:User':
     label: 'Frontend User'
     privileges:
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanShowUser'
         permission: GRANT
       -
         # Grant "frontend users" access to Nodes with property "restricted" == true
@@ -41,13 +46,16 @@ roles:
   'Neos.Neos:Editor':
     privileges:
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserProfile'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanShowUser'
         permission: GRANT
       -
-        privilegeTarget: 'UpAssist.Neos.FrontendLogin:UserIndex'
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanListUsers'
         permission: GRANT
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanDeleteUsers'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanEditUser'
         permission: GRANT
       -
         # Grant "frontend users" access to Nodes with property "restricted" == true

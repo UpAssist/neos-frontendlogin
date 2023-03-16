@@ -5,11 +5,13 @@ namespace UpAssist\Neos\FrontendLogin\Controller;
  * This script belongs to the TYPO3 Flow package "UpAssist.Neos.FrontendLogin".*
  *                                                                             */
 
+use Neos\Error\Messages\Notice;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\Exception\StopActionException;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
+use Neos\Fusion\View\FusionView;
 use Neos\Neos\Domain\Model\User;
 use Neos\Neos\Domain\Repository\UserRepository;
 use UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService;
@@ -20,6 +22,10 @@ use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\UserRegistrationDto;
  */
 class UserController extends ActionController
 {
+    /**
+     * @var string
+     */
+    protected $defaultViewObjectName = FusionView::class;
 
     /**
      * @Flow\Inject
@@ -44,16 +50,25 @@ class UserController extends ActionController
      */
     public function showAction(User $user = null)
     {
+        $user = $user ?? $this->userService->getCurrentUser();
         $this->view->assign('namespace', $this->request->getArgumentNamespace());
-        $this->view->assign('user', $user ?? $this->userService->getCurrentUser());
-        $this->view->assign('account', $user ? $user->getAccounts()->get(0) : $this->userService->getCurrentAccount());
+        $this->view->assign('user', $user);
+        $this->view->assign('electronicAddresses', $user->getElectronicAddresses());
+        $this->view->assign('account', $user->getAccounts()->get(0));
         $this->view->assign('roleIdentifiers', $this->roleIdentifiers);
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
     }
 
-//    public function initializeUpdateAction()
-//    {
-//        \Neos\Flow\var_dump($this->request->getArguments());die();
-//    }
+    /**
+     * @param User $user
+     * @return void
+     */
+    public function editAction(User $user): void
+    {
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
+        $this->view->assign('roleIdentifiers', $this->roleIdentifiers);
+        $this->view->assign('user', $user);
+    }
 
     /**
      * @param User $user
@@ -76,8 +91,8 @@ class UserController extends ActionController
         }
 
         $this->userService->updateUser($user);
-
-        $this->redirect('show', null, null, ['user' => $user]);
+        $this->controllerContext->getFlashMessageContainer()->addMessage(new Notice('Successfully updated', null, [], 'Updated'));
+        $this->redirect($this->request->getInternalArgument('__action') ?? 'show', null, null, ['user' => $user]);
     }
 
     /**
@@ -86,18 +101,18 @@ class UserController extends ActionController
     public function newAction()
     {
         $this->view->assign('roleIdentifiers', $this->roleIdentifiers);
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
     }
 
     /**
      * @param UserRegistrationDto $newUser
      * @return void
-     * @throws \Neos\Flow\Mvc\Exception\StopActionException
+     * @throws StopActionException
      */
     public function createAction(UserRegistrationDto $newUser)
     {
         $this->userService->addUser($newUser->getUsername(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
-
-        $this->redirect('index', 'login');
+        $this->redirect('index');
     }
 
     /**
@@ -105,7 +120,8 @@ class UserController extends ActionController
      */
     public function indexAction()
     {
-       $this->view->assign('users', $this->userService->findAll());
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
+        $this->view->assign('users', $this->userService->findAll());
     }
 
     /**
@@ -116,7 +132,8 @@ class UserController extends ActionController
     public function deleteAction(User $user)
     {
         $this->userService->deleteUser($user);
-        $this->redirect('index');
+        $this->persistenceManager->persistAll();
+        $this->redirect($this->request->getInternalArgument('__action') ?? 'index');
     }
 
     /**

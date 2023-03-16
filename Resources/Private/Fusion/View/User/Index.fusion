@@ -1,0 +1,11 @@
+UpAssist.Neos.FrontendLogin.UserController.index = Neos.Fusion:Component {
+  renderer = afx`
+  <section class="users">
+    <Neos.Fusion:Loop items={users} itemName="user">
+        <UpAssist.Neos.FrontendLogin:Molecule.Users.Index.Item user={user} />
+    </Neos.Fusion:Loop>
+  </section>
+  `
+}
+
+

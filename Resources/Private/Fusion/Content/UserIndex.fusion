@@ -3,14 +3,4 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.UserIndex) < prototype(Neos.Neos:Pl
   controller = 'User'
   action = 'index'
   argumentNamespace = 'users'
-
-  @cache {
-    mode = 'uncached'
-    context {
-      1 = 'node'
-      2 = 'documentNode'
-      3 = 'site'
-      4 = 'users'
-    }
-  }
 }

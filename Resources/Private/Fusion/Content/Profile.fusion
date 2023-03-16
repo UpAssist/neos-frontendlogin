@@ -3,14 +3,4 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.Profile) < prototype(Neos.Neos:Plug
   controller = 'User'
   action = 'show'
   argumentNamespace = 'profile'
-
-  @cache {
-    mode = 'uncached'
-    context {
-      1 = 'node'
-      2 = 'documentNode'
-      3 = 'site'
-      4 = 'user'
-    }
-  }
 }
