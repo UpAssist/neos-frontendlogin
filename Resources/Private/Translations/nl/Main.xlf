@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file original="" product-name="UpAssist.Neos.FrontendLogin" source-language="en" target-language="nl" datatype="plaintext">
+    <body>
+      <trans-unit id="label.username">
+        <source>Username</source>
+        <target>Gebruikersnaam</target>
+      </trans-unit>
+      <trans-unit id="label.firstname">
+        <source>Firstname</source>
+        <target>Voornaam</target>
+      </trans-unit>
+      <trans-unit id="label.lastname">
+        <source>Lastname</source>
+        <target>Achternaam</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>E-mail</source>
+        <target>Email adres</target>
+      </trans-unit>
+      <trans-unit id="label.role">
+        <source>Role</source>
+        <target>Rol</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>Password</source>
+        <target>Wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="label.password.change">
+        <source>Set a new password</source>
+        <target>Nieuw wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="button.update">
+        <source>Update</source>
+        <target>Update</target>
+      </trans-unit>
+      <trans-unit id="button.create">
+        <source>Create user</source>
+        <target>Gebruiker aanmaken</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.logout-success.title">
+        <source>Logged out</source>
+        <target>Uitgelogd</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.logout-success.msg">
+        <source>Successfully logged out</source>
+        <target>Succesvol uitgelogd</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-success.title">
+        <source>Logged in</source>
+        <target>Ingelogd</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-success.msg">
+        <source>Successfully logged in</source>
+        <target>Succesvol ingelogd</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-error.title">
+        <source>Login failed</source>
+        <target>Inloggen mislukt</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.login.login-error.msg">
+        <source>These credentials do not match, please try again.</source>
+        <target>De ingevoerde gegevens kloppen niet, probeer het nog een keer.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
