@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.4](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.3...8.0.4) (2023-03-17)
+
+
+### Bug Fixes
+
+* casing inconsistency ([99f75c8](https://bitbucket.org/upassist/upassist-neos-frontendlogin/commit/99f75c8452f553f45e489b5069e951c9cff93b33))
+
 ### [8.0.3](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.2...8.0.3) (2023-03-17)
 
 
