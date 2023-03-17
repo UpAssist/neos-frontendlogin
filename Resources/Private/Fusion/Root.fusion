@@ -1,4 +1,4 @@
-include: resource://Neos.Neos/Private/Fusion/ProtoTypes/NodeUri.fusion
+include: resource://Neos.Neos/Private/Fusion/Prototypes/NodeUri.fusion
 include: resource://Neos.Fusion/Private/Fusion/Root.fusion
 include: resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
 
