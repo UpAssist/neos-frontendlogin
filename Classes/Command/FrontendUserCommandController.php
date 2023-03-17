@@ -5,9 +5,15 @@ namespace UpAssist\Neos\FrontendLogin\Command;
  * This script belongs to the TYPO3 Flow package "UpAssist.Neos.FrontendLogin".*
  *                                                                             */
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
+use Neos\Flow\Cli\Exception\StopCommandException;
+use Neos\Neos\Domain\Exception;
 use Neos\Neos\Domain\Model\User;
+use Neos\Party\Domain\Model\ElectronicAddress;
+use Neos\Party\Domain\Model\PersonName;
+use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\UserRegistrationDto;
 use UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService;
 
 /**
@@ -29,17 +35,35 @@ class FrontendUserCommandController extends CommandController
      * @param string $password Password of the user to be created
      * @param string $givenName First name of the user to be created
      * @param string $familyName Last name of the user to be created
+     * @param string $email
+     * @param string $role
      * @return void
+     * @throws Exception
+     * @throws StopCommandException
      */
-    public function createCommand($username, $password, $givenName, $familyName)
+    public function createCommand(string $username, string $password, string $givenName, string $familyName, string $email, string $role = 'UpAssist.Neos.FrontendLogin:User'): void
     {
         $user = $this->userService->getUser($username);
         if ($user instanceof User) {
             $this->outputLine('The username "%s" is already in use', array($username));
             $this->quit(1);
         }
-        $user = new User(['name' => $givenName . ' ' . $familyName]);
-        $this->userService->addUser($user, $username, $password);
+        $neosUser = new User();
+        $name = new PersonName();
+        $name->setFirstName($givenName);
+        $name->setLastName($familyName);
+        $neosUser->setName($name);
+        $newUser = new UserRegistrationDto();
+        $newUser->setUser($neosUser);
+        $newUser->setUsername($username);
+        $newUser->setPassword($password);
+        $emailAddress = new ElectronicAddress();
+        $emailAddress->setIdentifier($email);
+        $emailAddress->setType('Email');
+        $collection = new ArrayCollection([$emailAddress]);
+        $newUser->setElectronicAddresses($collection);
+        $this->userService->addUser($newUser->getUsername(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
+
     }
 
 }
