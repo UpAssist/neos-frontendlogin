@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.3](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.2...8.0.3) (2023-03-17)
+
+
+### Bug Fixes
+
+* command controller is not working ([58b1d44](https://bitbucket.org/upassist/upassist-neos-frontendlogin/commit/58b1d44210dad2cfcb872f9cdedd36f3afe8b968))
+
 ### [8.0.2](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.1...8.0.2) (2023-03-17)
 
 ### [8.0.1](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.0...8.0.1) (2023-03-16)
