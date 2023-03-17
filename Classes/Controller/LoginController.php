@@ -62,7 +62,6 @@ class LoginController extends AbstractAuthenticationController
      */
     public function logoutAction()
     {
-
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
             $this->controllerContext->getFlashMessageContainer()->addMessage(
                 new Error\Notice(
@@ -72,18 +71,23 @@ class LoginController extends AbstractAuthenticationController
                 )
             );
         }
-        $this->authenticationManager->logout();
 
         /** @var NodeInterface $logoutRedirectNode */
         $logoutRedirectNode = $this->request->getInternalArgument('__logoutRedirectNode');
         if ($logoutRedirectNode !== null) {
             $referer = $this->request->getReferringRequest();
             if ($referer->getControllerPackageKey() === 'Neos.Neos') {
+
+                $this->authenticationManager->logout();
                 $this->redirect($referer->getControllerActionName(), $referer->getControllerName(), $referer->getControllerPackageKey(), $referer->getArguments());
             }
-            $this->redirectToUri($logoutRedirectNode);
+
+            $this->authenticationManager->logout();
+            header('Location: ' . $logoutRedirectNode);
+            exit();
         }
 
+        $this->authenticationManager->logout();
         $this->redirect('login');
     }
 
