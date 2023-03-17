@@ -1,7 +1,7 @@
 prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.FlashMessages) < prototype(Neos.Fusion:Component) {
   renderer = afx`
       <Neos.Fusion:Loop items={flashMessages} itemName="flashMessage" @if={flashMessages}>
-        <div data-alert class="alert-box {flashMessage.severity}">
+        <div data-alert class={'alert alert--' + String.toLowerCase(flashMessage.severity)}>
           {flashMessage.message}
         </div>
       </Neos.Fusion:Loop>

@@ -91,8 +91,7 @@ class UserController extends ActionController
         }
 
         $this->userService->updateUser($user);
-        $this->controllerContext->getFlashMessageContainer()->addMessage(new Notice('Successfully updated', null, [], 'Updated'));
-        $this->redirect($this->request->getInternalArgument('__action') ?? 'show', null, null, ['user' => $user]);
+        $this->forward($this->request->getInternalArgument('__action') ?? 'show', null, null, ['user' => $user]);
     }
 
     /**

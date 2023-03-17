@@ -58,6 +58,9 @@ roles:
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanEditUser'
         permission: GRANT
       -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanCreateUsers'
+        permission: GRANT
+      -
         # Grant "frontend users" access to Nodes with property "restricted" == true
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:RestrictNode'
         permission: GRANT

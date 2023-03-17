@@ -20,7 +20,7 @@ prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.Status) < prototype(Neo
         form.method="post"
         @if={props.enableLogoutButton}
       >
-        <Neos.Fusion.Form:Button type="submit">{props.labels.logout}</Neos.Fusion.Form:Button>
+        <Neos.Fusion.Form:Button attributes.class="action action--logout">{props.labels.logout}</Neos.Fusion.Form:Button>
       </Neos.Fusion.Form:Form>
     </div>
   `
