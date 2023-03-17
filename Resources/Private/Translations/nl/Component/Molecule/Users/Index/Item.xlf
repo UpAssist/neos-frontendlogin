@@ -10,6 +10,10 @@
         <source>Delete</source>
         <target>Verwijderen</target>
       </trans-unit>
+      <trans-unit id="action.delete.confirm">
+        <source>Are you sure?</source>
+        <target>Weet je het zeker?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

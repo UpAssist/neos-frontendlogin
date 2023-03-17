@@ -2,6 +2,7 @@ prototype(UpAssist.Neos.FrontendLogin:Molecule.Users.Index.Item) < prototype(Neo
   labels = Neos.Fusion:DataStructure {
     edit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.Users.Index.Item:action.edit')}
     delete = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.Users.Index.Item:action.delete')}
+    deleteConfirm = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.Users.Index.Item:action.delete.confirm')}
   }
 
   edit = Neos.Fusion:UriBuilder {
@@ -38,7 +39,7 @@ prototype(UpAssist.Neos.FrontendLogin:Molecule.Users.Index.Item) < prototype(Neo
         </span>
       <span class="user-actions">
         <a href={props.edit} @if={props.edit} class="action action--edit">{props.labels.edit}</a>
-        <a href={props.delete} @if={props.delete} class="action action--delete">{props.labels.delete}</a>
+        <a href={props.delete} @if={props.delete} onclick={'return confirm(\'' + props.labels.deleteConfirm + '\')'} class="action action--delete">{props.labels.delete}</a>
       </span>
     </article>
   `
