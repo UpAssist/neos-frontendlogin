@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.0.6](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.5...8.0.6) (2023-03-17)
+
 ### [8.0.5](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.4...8.0.5) (2023-03-17)
 
 ### [8.0.4](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.3...8.0.4) (2023-03-17)
