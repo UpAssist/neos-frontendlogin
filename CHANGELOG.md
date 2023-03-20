@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.1.0](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.6...8.1.0) (2023-03-20)
+
+
+### Features
+
+* password reset option ([ea89f99](https://bitbucket.org/upassist/upassist-neos-frontendlogin/commit/ea89f99a4938f27f9da107fbc159265af1c70560))
+
 ### [8.0.6](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.5...8.0.6) (2023-03-17)
 
 ### [8.0.5](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.4...8.0.5) (2023-03-17)
