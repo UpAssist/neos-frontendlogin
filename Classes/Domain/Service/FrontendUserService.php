@@ -3,13 +3,15 @@
 namespace UpAssist\Neos\FrontendLogin\Domain\Service;
 
 /*                                                                             *
- * This script belongs to the TYPO3 Flow package "UpAssist.Neos.FrontendLogin".*
+ * This script belongs to the Neos Flow package "UpAssist.Neos.FrontendLogin".*
  *                                                                             */
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Security\Account;
+use Neos\Neos\Domain\Exception;
 use Neos\Neos\Domain\Model\User;
 use Neos\Neos\Domain\Service\UserService;
+use Neos\Party\Domain\Model\ElectronicAddress;
 
 /**
  * Central authority to deal with "frontend users"
@@ -38,6 +40,15 @@ class FrontendUserService extends UserService
     }
 
     /**
+     * @param User $user
+     * @return Account|null
+     */
+    public function getAccountByUser(User $user): ?Account
+    {
+        return isset($user->getAccounts()->toArray()[0]) ? $user->getAccounts()->toArray()[0] : null;
+    }
+
+    /**
      * @param string $value
      * @return string
      * @throws \Neos\Neos\Domain\Exception
@@ -55,6 +66,32 @@ class FrontendUserService extends UserService
         foreach ($accounts as $account) {
             if ($this->getUser($account->getAccountIdentifier())->getName()->getLastName() === $value) {
                 return $account->getAccountIdentifier();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param string $emailAddress
+     * @return Account|null
+     * @throws Exception
+     */
+    public function getAccountByEmailAddress(string $emailAddress): ?Account
+    {
+        $query = $this->accountRepository->createQuery();
+        $accounts = $query->matching(
+            $query->logicalAnd(
+                $query->equals('authenticationProviderName', $this->defaultAuthenticationProviderName)
+            )
+        )->execute()->toArray();
+
+        /** @var Account $account */
+        foreach ($accounts as $account) {
+            $user = $this->getUser($account->getAccountIdentifier());
+
+            if (isset($user->getElectronicAddresses()[0]) && $user->getElectronicAddresses()[0]->getIdentifier() === $emailAddress) {
+                return $account;
             }
         }
 
@@ -95,4 +132,5 @@ class FrontendUserService extends UserService
         return parent::addUser($username, $password, $user, $roleIdentifiers, $authenticationProviderName);
         // TODO: Prevent duplicates (now nasty sql error)
     }
+
 }

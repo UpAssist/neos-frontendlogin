@@ -2,7 +2,7 @@
 namespace UpAssist\Neos\FrontendLogin\Command;
 
 /*                                                                             *
- * This script belongs to the TYPO3 Flow package "UpAssist.Neos.FrontendLogin".*
+ * This script belongs to the Neos Flow package "UpAssist.Neos.FrontendLogin".*
  *                                                                             */
 
 use Doctrine\Common\Collections\ArrayCollection;

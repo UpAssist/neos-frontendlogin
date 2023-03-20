@@ -1,21 +1,30 @@
 <?php
+
 namespace UpAssist\Neos\FrontendLogin\Controller;
 
 /*                                                                             *
- * This script belongs to the TYPO3 Flow package "UpAssist.Neos.FrontendLogin".*
+ * This script belongs to the Neos Flow package "UpAssist.Neos.FrontendLogin".*
  *                                                                             */
 
-use Neos\Error\Messages\Notice;
+use GuzzleHttp\Psr7\Uri;
+use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
 use Neos\Flow\Mvc\Exception\StopActionException;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
 use Neos\Fusion\View\FusionView;
+use Neos\Neos\Domain\Exception;
 use Neos\Neos\Domain\Model\User;
 use Neos\Neos\Domain\Repository\UserRepository;
+use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\NewPasswordDto;
+use UpAssist\Neos\FrontendLogin\Domain\Model\PasswordResetToken;
+use UpAssist\Neos\FrontendLogin\Domain\Repository\PasswordResetTokenRepository;
 use UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService;
 use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\UserRegistrationDto;
+use Neos\Flow\I18n\Service as I18nService;
+use UpAssist\Neos\FrontendLogin\Service\EmailService;
 
 /**
  * Controller for displaying a simple user profile for frontend users
@@ -28,22 +37,34 @@ class UserController extends ActionController
     protected $defaultViewObjectName = FusionView::class;
 
     /**
-     * @Flow\Inject
-     * @var UserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * @Flow\Inject
      * @var FrontendUserService
+     * @Flow\Inject
      */
-    protected $userService;
+    protected FrontendUserService $userService;
 
     /**
      * @Flow\InjectConfiguration(path="roleIdentifiers")
      * @var array
      */
-    protected $roleIdentifiers;
+    protected array $roleIdentifiers;
+
+    /**
+     * @var I18nService $i18nService
+     * @Flow\Inject
+     */
+    protected I18nService $i18nService;
+
+    /**
+     * @var EmailService $emailService
+     * @Flow\Inject
+     */
+    protected EmailService $emailService;
+
+    /**
+     * @var PasswordResetTokenRepository $passwordResetTokenRepository
+     * @Flow\Inject
+     */
+    protected PasswordResetTokenRepository $passwordResetTokenRepository;
 
     /**
      * @return void
@@ -81,8 +102,7 @@ class UserController extends ActionController
         if ($password) {
             try {
                 $this->userService->setUserPassword($user, $password);
-            } catch (IllegalObjectTypeException $e) {
-            } catch (SessionNotStartedException $e) {
+            } catch (IllegalObjectTypeException|SessionNotStartedException $e) {
             }
         }
 
@@ -133,6 +153,118 @@ class UserController extends ActionController
         $this->userService->deleteUser($user);
         $this->persistenceManager->persistAll();
         $this->redirect($this->request->getInternalArgument('__action') ?? 'index');
+    }
+
+    /**
+     * @throws NoSuchArgumentException
+     * @throws Exception
+     */
+    public function resetPasswordAction()
+    {
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
+
+        // Upon email sent
+        if ($this->request->hasArgument('emailSent') && $this->request->getArgument('emailSent')) {
+            $this->view->assign('status','emailSent');
+        }
+
+        // Upon account not found
+        if ($this->request->hasArgument('accountNotFound') && $this->request->getArgument('accountNotFound')) {
+            $this->view->assign('status','accountNotFound');
+        }
+
+        // Upon successful password reset
+        if ($this->request->hasArgument('success') && $this->request->getArgument('success')) {
+            $this->view->assign('status', 'success');
+        }
+
+        // Upon link clicked in email
+        if ($this->request->hasArgument('token') || ($this->request->getParentRequest() && $this->request->getParentRequest()->hasArgument('token'))) {
+            $token = $this->request->hasArgument('token') ? $this->request->getArgument('token') : $this->request->getParentRequest()->getArgument('token');
+
+            /** @var PasswordResetToken $passwordResetToken */
+            $passwordResetToken = $this->passwordResetTokenRepository->findOneByToken($token);
+            // Check token on time sensitivity
+            // Set the threshold for key expiration (in seconds)
+            $expirationThreshold = 3600; // 1 hour
+
+            // Get the current timestamp
+            $currentTimestamp = time();
+            // Assume that $timeSensitiveKey is the time-sensitive secret key that we want to check
+            // We can extract the timestamp from the key by splitting the key into two parts
+            $timestampFromKey = (int)substr($token, -10);
+
+            // Compare the difference between the timestamps with the expiration threshold
+            if (($currentTimestamp - $timestampFromKey) > $expirationThreshold) {
+                // The key has expired
+                $this->view->assign('status','invalidToken');
+                $this->passwordResetTokenRepository->remove($passwordResetToken);
+            } else {
+                // The key is still valid
+                $this->view->assign('user', $this->userService->getUser($passwordResetToken->getAccount()->getAccountIdentifier()));
+                /** @var Result $result */
+                $result = $this->request->getInternalArgument('__submittedArgumentValidationResults');
+                if ($result && $result->hasErrors()) {
+                    $this->view->assign('errors', true);
+                }
+            }
+        }
+
+    }
+
+    /**
+     * @param NewPasswordDto $newPassword
+     * @return void
+     * @throws IllegalObjectTypeException
+     * @throws SessionNotStartedException
+     * @throws StopActionException
+     */
+    public function updatePasswordAction(NewPasswordDto $newPassword): void
+    {
+        $this->userService->setUserPassword($newPassword->getUser(), $newPassword->getPassword()[0]);
+        $passwordToken = $this->passwordResetTokenRepository->findOneByAccount($this->userService->getAccountByUser($newPassword->getUser()));
+        $this->passwordResetTokenRepository->remove($passwordToken);
+        $this->redirect('resetPassword', null, null, ['success' => true]);
+    }
+
+    /**
+     * @param string $emailAddress
+     * @return null
+     * @throws Exception
+     * @throws IllegalObjectTypeException
+     * @throws StopActionException
+     */
+    public function sendPasswordResetEmailAction(string $emailAddress)
+    {
+        $account = $this->userService->getAccountByEmailAddress($emailAddress);
+        if ($account) {
+
+            // Generate a random salt
+            $salt = bin2hex(random_bytes(16));
+
+            // Generate a secure key using SHA256 hash function
+            $secure_key = hash('sha256', $account->getAccountIdentifier() . $salt) . time();
+            $passwordResetToken = new PasswordResetToken($secure_key, $account);
+            $this->passwordResetTokenRepository->add($passwordResetToken);
+
+            // SEND EMAIL
+            /** @var Uri $domain */
+            $domain = $this->request->getHttpRequest()->getUri();
+            $this->emailService->sendEmail('passwordReset', [
+                'recipient' => $this->userService->getUser($passwordResetToken->getAccount()->getAccountIdentifier()),
+                'sender' => $this->userService->getUser($passwordResetToken->getAccount()->getAccountIdentifier()),
+                'link' => $this->uriBuilder
+                    ->setCreateAbsoluteUri(true)
+                    ->uriFor('resetPassword', ['token' => $secure_key]),
+                'locale' => $this->i18nService->getConfiguration()->getCurrentLocale()->getLanguage(),
+                'domain' => $domain->getScheme() . '://' . $domain->getHost() . ($domain->getPort() != '8080' ? ':' . $domain->getPort() : null) . $domain->getPath()
+            ]);
+
+            $this->redirect('resetPassword', null, null, ['emailSent' => true]);
+
+        }
+
+        return $this->redirect('resetPassword', null, null, ['accountNotFound' => true]);
     }
 
     /**

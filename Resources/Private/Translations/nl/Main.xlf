@@ -16,7 +16,7 @@
       </trans-unit>
       <trans-unit id="label.email">
         <source>E-mail</source>
-        <target>Email adres</target>
+        <target>E-mail adres</target>
       </trans-unit>
       <trans-unit id="label.role">
         <source>Role</source>
@@ -61,6 +61,62 @@
       <trans-unit id="flashMessage.login.login-error.msg">
         <source>These credentials do not match, please try again.</source>
         <target>De ingevoerde gegevens kloppen niet, probeer het nog een keer.</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword">
+        <source>Forgot your password?</source>
+        <target>Wachtwoord vergeten?</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.legend">
+        <source>Set a new password for {0}</source>
+        <target>Vul een nieuw wachtwoord in voor {0}</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.email">
+        <source>Enter your e-mail address here</source>
+        <target>Vul hier je e-mail adres in</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.login">
+        <source>Login</source>
+        <target>Login</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.tooltip.email">
+        <source>If we can match your e-mail address to an existing account, we will send you a link with which you reset your password.</source>
+        <target>Wanneer we je e-mail adres kunnen koppelen aan een actief account, sturen we je een link toe waarmee je je wachtwoord opnieuw in kunt stellen.</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.button.submit">
+        <source>Yes, please send me the link!</source>
+        <target>Ja, stuur me de link!</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.password">
+        <source>Set the new password</source>
+        <target>Je nieuwe wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.passwordRepeat">
+        <source>Repeat the new password</source>
+        <target>Herhaal je nieuwe wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.button.submitPasswords">
+        <source>Reset the password</source>
+        <target>Reset het wachtwoord</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.error">
+        <source>Your passwords do not match.</source>
+        <target>De wachtwoorden komen niet overeen</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.accountNotFound">
+        <source>The email address you provided is not linked to an existing account.</source>
+        <target>Het email adres kan niet worden gevonden bij een bestaand account.</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.emailSent">
+        <source>Please check your inbox for an email with a link to reset your password.</source>
+        <target>Check je inbox voor een email met een link om je wachtwoord te herstellen.</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.invalidToken">
+        <source>The token has expired, please retry.</source>
+        <target>De link is verlopen. Probeer het opnieuw.</target>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.success">
+        <source>The password has been successfully changed.</source>
+        <target>Het wachtwoord is succesvol aangepast.</target>
       </trans-unit>
     </body>
   </file>

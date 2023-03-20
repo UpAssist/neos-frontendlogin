@@ -1,0 +1,26 @@
+UpAssist:
+  Neos:
+    FrontendLogin:
+      emailTemplates:
+        # PasswordReset template can contain the following variables: {recipient}, {sender}, {link}, {domain}
+        passwordReset:
+          en:
+            subject: You requested a password reset
+            message: |
+              Dear {recipient},
+
+              You requested a password reset for {domain}. Please click the following link
+              to reset your password: {link}
+
+              This link is valid for 1 hour.
+              If you did not request a password reset, please ignore this email.
+          nl:
+            subject: Je hebt een wachtwoord herstel link aangevraagd
+            message: |
+              Beste {recipient},
+
+              Je hebt een wachtwoord reset aangevraagd voor {domain}. Klik op de volgende link om je wachtwoord opnieuw
+              in te stellen: {link}
+
+              Deze link is 1 uur geldig.
+              Heb je geen wachtwoord reset aangevraagd? Verwijder dan deze email.

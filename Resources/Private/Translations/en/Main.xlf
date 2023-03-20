@@ -47,6 +47,48 @@
       <trans-unit id="flashMessage.login.login-error.msg">
         <source>These credentials do not match, please try again.</source>
       </trans-unit>
+      <trans-unit id="action.resetPassword">
+        <source>Forgot your password?</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.legend">
+        <source>Set a new password for {0}</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.email">
+        <source>Enter your e-mail address here</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.login">
+        <source>Login</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.tooltip.email">
+        <source>If we can match your e-mail address to an existing account, we will send you a link with which you reset your password.</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.button.submit">
+        <source>Yes, please send me the link!</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.password">
+        <source>Set the new password</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.label.passwordRepeat">
+        <source>Repeat the new password</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.button.submitPasswords">
+        <source>Reset the password</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.error">
+        <source>Your passwords do not match.</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.accountNotFound">
+        <source>The email address you provided is not linked to an existing account.</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.emailSent">
+        <source>Please check your inbox for an email with a link to reset your password.</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.invalidToken">
+        <source>The token has expired, please retry.</source>
+      </trans-unit>
+      <trans-unit id="action.resetPassword.messages.success">
+        <source>The password has been successfully changed.</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

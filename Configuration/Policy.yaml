@@ -4,15 +4,17 @@ privilegeTargets:
     'UpAssist.Neos.FrontendLogin:CanLogin':
       matcher: 'within(Neos\Flow\Security\Authentication\Controller\AbstractAuthenticationController) || method(UpAssist\Neos\FrontendLogin\Controller\LoginController->(?!initialize).*Action())'
     'UpAssist.Neos.FrontendLogin:CanCreateUsers':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create)Action())'
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(new|create|error)Action())'
     'UpAssist.Neos.FrontendLogin:CanShowUser':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show|update)Action())'
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(show|update|error)Action())'
     'UpAssist.Neos.FrontendLogin:CanEditUser':
-      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(update|edit)Action())'
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(update|edit|error)Action())'
     'UpAssist.Neos.FrontendLogin:CanListUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(index)Action())'
     'UpAssist.Neos.FrontendLogin:CanDeleteUsers':
       matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(delete)Action())'
+    'UpAssist.Neos.FrontendLogin:CanResetPassword':
+      matcher: 'method(UpAssist\Neos\FrontendLogin\Controller\UserController->(resetPassword|sendPasswordResetEmail|updatePassword|error)Action())'
 
   'UpAssist\Neos\FrontendLogin\Security\Authorization\Privilege\Node\ReadNodePrivilege':
     'UpAssist.Neos.FrontendLogin:RestrictNode':
@@ -30,6 +32,9 @@ roles:
         permission: GRANT
       -
         privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanShowUser'
+        permission: GRANT
+      -
+        privilegeTarget: 'UpAssist.Neos.FrontendLogin:CanResetPassword'
         permission: GRANT
 
   'UpAssist.Neos.FrontendLogin:User':
