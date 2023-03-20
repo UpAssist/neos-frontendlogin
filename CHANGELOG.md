@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.1](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.1.0...8.1.1) (2023-03-20)
+
+
+### Bug Fixes
+
+* error class on input should be on container ([af3eb9b](https://bitbucket.org/upassist/upassist-neos-frontendlogin/commit/af3eb9b10a9678fa85698f5530d3b2f636d04d4e))
+
 ## [8.1.0](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.0.6...8.1.0) (2023-03-20)
 
 
