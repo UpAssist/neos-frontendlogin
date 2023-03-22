@@ -132,7 +132,7 @@ class UserController extends ActionController
     {
         $this->userService->deleteUser($user);
         $this->persistenceManager->persistAll();
-        $this->redirect($this->request->getInternalArgument('__action') ?? 'index');
+        $this->redirect('index');
     }
 
     /**
