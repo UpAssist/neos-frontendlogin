@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.1.2](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.1.1...8.1.2) (2023-07-20)
+
+
+### Bug Fixes
+
+* better handling redirects ([2eb7321](https://bitbucket.org/upassist/upassist-neos-frontendlogin/commit/2eb73217e11eba3a62aab02b50b231eb09ef5866))
+
 ### [8.1.1](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.1.0...8.1.1) (2023-03-20)
 
 
