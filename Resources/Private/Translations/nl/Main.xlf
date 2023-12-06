@@ -62,6 +62,14 @@
         <source>These credentials do not match, please try again.</source>
         <target>De ingevoerde gegevens kloppen niet, probeer het nog een keer.</target>
       </trans-unit>
+      <trans-unit id="flashMessage.user.create.msg">
+        <source>Your user is created successfully. You can login now with this user.</source>
+        <target>Je gebruiker is aangemaakt. Je kunt nu inloggen.</target>
+      </trans-unit>
+      <trans-unit id="flashMessage.user.create.title">
+        <source>Your user is created!</source>
+        <target>Je gebruikersaccount is aangemaakt!</target>
+      </trans-unit>
       <trans-unit id="action.resetPassword">
         <source>Forgot your password?</source>
         <target>Wachtwoord vergeten?</target>

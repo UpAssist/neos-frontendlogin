@@ -7,17 +7,21 @@ namespace UpAssist\Neos\FrontendLogin\Controller;
  *                                                                             */
 
 use GuzzleHttp\Psr7\Uri;
+use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Error\Messages\Notice;
 use Neos\Error\Messages\Result;
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\I18n\Translator;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\Exception\NoSuchArgumentException;
 use Neos\Flow\Mvc\Exception\StopActionException;
+use Neos\Flow\Mvc\Routing\Exception\MissingActionNameException;
 use Neos\Flow\Persistence\Exception\IllegalObjectTypeException;
 use Neos\Flow\Session\Exception\SessionNotStartedException;
 use Neos\Fusion\View\FusionView;
 use Neos\Neos\Domain\Exception;
 use Neos\Neos\Domain\Model\User;
-use Neos\Neos\Domain\Repository\UserRepository;
+use Neos\Neos\Service\LinkingService;
 use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\NewPasswordDto;
 use UpAssist\Neos\FrontendLogin\Domain\Model\PasswordResetToken;
 use UpAssist\Neos\FrontendLogin\Domain\Repository\PasswordResetTokenRepository;
@@ -65,6 +69,20 @@ class UserController extends ActionController
      * @Flow\Inject
      */
     protected PasswordResetTokenRepository $passwordResetTokenRepository;
+
+    /**
+     * @var Translator $translator
+     * @Flow\Inject
+     */
+    protected Translator $translator;
+
+    /**
+     *
+     * @var string $translationPackage
+     * @Flow\InjectConfiguration (path="translationPackage", package="UpAssist.Neos.FrontendLogin")
+     */
+    protected $translationPackage = 'UpAssist.Neos.FrontendLogin';
+
 
     /**
      * @return void
@@ -131,6 +149,27 @@ class UserController extends ActionController
     public function createAction(UserRegistrationDto $newUser)
     {
         $this->userService->addUser($newUser->getUsername(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
+
+        $this->controllerContext->getFlashMessageContainer()->addMessage(
+            new Notice(
+                $this->translator->translateById('flashMessage.user.create.msg', [],null,null,'Main', $this->translationPackage),
+                null, [],
+                $this->translator->translateById('flashMessage.user.create.title', [],null,null,'Main', $this->translationPackage)
+            )
+        );
+
+        /** @var NodeInterface $redirectNode */
+        $redirectNode = $this->request->getInternalArgument('__node')->getProperty('redirectNode');
+
+        if ($redirectNode !== null) {
+            $linkingService = new LinkingService();
+            try {
+                $uri = $linkingService->createNodeUri($this->controllerContext, $redirectNode);
+            } catch (\Neos\Flow\Http\Exception|\Neos\Flow\Property\Exception|MissingActionNameException|IllegalObjectTypeException|\Neos\Flow\Security\Exception|\Neos\Neos\Exception $e) {
+            }
+            $this->redirectToUri($uri);
+        }
+
         $this->redirect('index');
     }
 

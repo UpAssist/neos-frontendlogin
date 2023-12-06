@@ -1,5 +1,7 @@
 UpAssist.Neos.FrontendLogin:Mixin.RestrictNode:
   abstract: true
+  superTypes:
+    'UpAssist.Neos.FrontendLogin:Mixin.Abstract': true
   properties:
     restrictNode:
       type: boolean

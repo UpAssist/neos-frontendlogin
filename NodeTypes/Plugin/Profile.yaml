@@ -1,6 +1,8 @@
 UpAssist.Neos.FrontendLogin:Plugin.Profile:
   superTypes:
     Neos.Neos:Plugin: true
+    'UpAssist.Neos.FrontendLogin:Mixin.Abstract': true
   ui:
     label: 'Profile'
     icon: icon-user
+    group: frontendLogin

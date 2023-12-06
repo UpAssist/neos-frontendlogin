@@ -1,5 +1,7 @@
 UpAssist.Neos.FrontendLogin:Mixin.Redirect:
   abstract: true
+  superTypes:
+    'UpAssist.Neos.FrontendLogin:Mixin.Abstract': true
   properties:
     redirectNode:
       type: reference

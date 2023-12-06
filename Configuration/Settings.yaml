@@ -40,3 +40,8 @@ Neos:
           autoInclude:
             UpAssist.Neos.FrontendLogin:
               - '*'
+    nodeTypes:
+      groups:
+        frontendLogin:
+          label: 'UpAssist.Neos.FrontendLogin:Main:nodeTypes.groups.frontendLogin'
+          collapsed: true

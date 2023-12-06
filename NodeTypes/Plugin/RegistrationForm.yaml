@@ -5,3 +5,9 @@
   ui:
     label: 'Registration form'
     icon: icon-key
+    group: frontendLogin
+  properties:
+    logoutRedirectNode:
+      ui:
+        inspector:
+          group: ~

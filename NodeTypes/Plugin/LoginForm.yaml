@@ -5,3 +5,4 @@ UpAssist.Neos.FrontendLogin:Plugin.LoginForm:
   ui:
     label: 'Login form'
     icon: icon-key
+    group: frontendLogin

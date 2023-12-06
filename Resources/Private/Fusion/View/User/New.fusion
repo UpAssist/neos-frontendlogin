@@ -32,7 +32,7 @@ UpAssist.Neos.FrontendLogin.UserController.new = Neos.Fusion:Component {
         </Neos.Fusion.Form:FieldContainer>
         <Neos.Fusion.Form:Hidden field.name="newUser[user][electronicAddresses][0][type]" field.value="Email"/>
       </fieldset>
-      <fieldset>
+      <fieldset @if={roleIdentifiers}>
 
         <Neos.Fusion.Form:FieldContainer field.name="newUser[roleIdentifier]" label={props.labels.role}>
           <Neos.Fusion.Form:Select>
