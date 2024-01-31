@@ -2,7 +2,7 @@
   "name": "upassist-neos-frontendlogin",
   "version": "8.1.3",
   "main": "index.js",
-  "repository": "git@bitbucket.org:upassist/upassist-neos-frontendlogin.git",
+  "repository": "git@github.com:UpAssist/neos-frontendlogin.git",
   "author": "Henjo Hoeksma <henjo@upassist.com>",
   "license": "MIT",
   "private": true,
