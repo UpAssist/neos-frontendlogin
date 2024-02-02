@@ -24,3 +24,13 @@ UpAssist:
 
               Deze link is 1 uur geldig.
               Heb je geen wachtwoord reset aangevraagd? Verwijder dan deze email.
+          de:
+            subject: Sie haben ein neues Passwort angefordert
+            message: |
+              Sehr geehrte/r {recipient},
+
+              Sie haben ein neues Passwort angefordert für {domain}. Bitte klicken Sie auf folgenden Link,
+              um Ihr Passwort neu zu vergeben: {link}
+
+              Dieser Link ist 1 Stunde gültig.
+              Falls Sie kein neues Passwort angefordert haben, können Sie diese E-Mail ignorieren.

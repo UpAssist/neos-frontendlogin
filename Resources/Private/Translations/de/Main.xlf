@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="UpAssist.Neos.FrontendLogin" source-language="en" target-language="de"
+          datatype="plaintext">
+        <body>
+            <trans-unit id="label.username">
+                <source>Username</source>
+                <target>Benutzername</target>
+            </trans-unit>
+            <trans-unit id="label.firstname">
+                <source>Firstname</source>
+                <target>Vorname</target>
+            </trans-unit>
+            <trans-unit id="label.lastname">
+                <source>Lastname</source>
+                <target>Nachname</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>E-mail</source>
+                <target>E-Mail-Adresse</target>
+            </trans-unit>
+            <trans-unit id="label.role">
+                <source>Role</source>
+                <target>Benutzerrolle</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>Password</source>
+                <target>Passwort</target>
+            </trans-unit>
+            <trans-unit id="label.password.change">
+                <source>Set a new password</source>
+                <target>Neues Passwort festlegen</target>
+            </trans-unit>
+            <trans-unit id="button.update">
+                <source>Update</source>
+                <target>Aktualisieren</target>
+            </trans-unit>
+            <trans-unit id="button.create">
+                <source>Create user</source>
+                <target>Benutzer erstellen</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.logout-success.title">
+                <source>Logged out</source>
+                <target>Erfolgreich abgemeldet</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.logout-success.msg">
+                <source>Successfully logged out</source>
+                <target>Erfolgreich angemeldet</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.login-success.title">
+                <source>Logged in</source>
+                <target>Angemeldet</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.login-success.msg">
+                <source>Successfully logged in</source>
+                <target>Erfolgreich angemeldet</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.login-error.title">
+                <source>Login failed</source>
+                <target>Anmeldung fehlgeschlagen</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.login.login-error.msg">
+                <source>These credentials do not match, please try again.</source>
+                <target>Anmeldedaten falsch. Bitte erneut probieren.</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword">
+                <source>Forgot your password?</source>
+                <target>Passwort vergessen?</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.label.legend">
+                <source>Set a new password for {0}</source>
+                <target>Neues Passwort setzen für {0}</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.label.email">
+                <source>Enter your e-mail address here</source>
+                <target>Tragen Sie hier Ihre E-Mail-Adresse ein</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.label.login">
+                <source>Login</source>
+                <target>Anmelden</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.tooltip.email">
+                <source>If we can match your e-mail address to an existing account, we will send you a link with which
+                    you reset your password.
+                </source>
+                <target>Falls bereits ein Benutzeraccount mit dieser E-Mail-Adresse existiert, senden wir Ihnen einen
+                    Link zu, mit dem Sie Ihr Passwort zurücksetzen können.
+                </target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.button.submit">
+                <source>Yes, please send me the link!</source>
+                <target>Ja, ich möchte einen Link erhalten!</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.label.password">
+                <source>Set the new password</source>
+                <target>Neues Passwort festlegen</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.label.passwordRepeat">
+                <source>Repeat the new password</source>
+                <target>Neues Passwort wiederholen</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.button.submitPasswords">
+                <source>Reset the password</source>
+                <target>Jetzt neues Passwort festlegen</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.messages.error">
+                <source>Your passwords do not match.</source>
+                <target>Die Passwörter stimmen nicht überein.</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.messages.accountNotFound">
+                <source>The email address you provided is not linked to an existing account.</source>
+                <target>Für diese E-Mail-Adresse existiert noch kein Benutzeraccount.</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.messages.emailSent">
+                <source>Please check your inbox for an email with a link to reset your password.</source>
+                <target>Wir haben Ihnen einen Link gesendet. Bitte prüfen Sie Ihren Posteingang.</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.messages.invalidToken">
+                <source>The token has expired, please retry.</source>
+                <target>Der Link ist abgelaufen. Bitte versuchen Sie es noch einmal.</target>
+            </trans-unit>
+            <trans-unit id="action.resetPassword.messages.success">
+                <source>The password has been successfully changed.</source>
+                <target>Das Passwort wurde erfolgreich geändert.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
