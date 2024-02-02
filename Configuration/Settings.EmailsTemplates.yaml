@@ -34,3 +34,19 @@ UpAssist:
 
               Dieser Link ist 1 Stunde gültig.
               Falls Sie kein neues Passwort angefordert haben, können Sie diese E-Mail ignorieren.
+
+        # 'to' and 'from' are rquired, {username} is available as variable
+#        adminNotification:
+#          en:
+#            to: ''
+#            from: ''
+#            subject: A new user has been created
+#            message: |
+#              Dear admin,
+#
+#              a user has been created with the following username: {username}.
+#
+#              This user still needs to be approved.
+#
+#              You can do this inside the user management module in Neos by adding the 'Approved Frontend User'
+#              role to this user.

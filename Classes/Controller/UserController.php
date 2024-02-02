@@ -190,6 +190,27 @@ class UserController extends ActionController
     public function createByEmailAction(UserRegistrationDto $newUser)
     {
         $this->userService->addUser($newUser->getFirstEmailAddress(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
+
+        $this->controllerContext->getFlashMessageContainer()->addMessage(
+            new Notice(
+                $this->translator->translateById('flashMessage.user.create.msg', [],null,null,'Main', $this->translationPackage),
+                null, [],
+                $this->translator->translateById('flashMessage.user.create.title', [],null,null,'Main', $this->translationPackage)
+            )
+        );
+
+        /** @var NodeInterface $redirectNode */
+        $redirectNode = $this->request->getInternalArgument('__node')->getProperty('redirectNode');
+
+        if ($redirectNode !== null) {
+            $linkingService = new LinkingService();
+            try {
+                $uri = $linkingService->createNodeUri($this->controllerContext, $redirectNode);
+            } catch (\Neos\Flow\Http\Exception|\Neos\Flow\Property\Exception|MissingActionNameException|IllegalObjectTypeException|\Neos\Flow\Security\Exception|\Neos\Neos\Exception $e) {
+            }
+            $this->redirectToUri($uri);
+        }
+
         $this->redirect('login', 'Login');
     }
 

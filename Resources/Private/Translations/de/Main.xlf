@@ -63,6 +63,14 @@
                 <source>These credentials do not match, please try again.</source>
                 <target>Anmeldedaten falsch. Bitte erneut probieren.</target>
             </trans-unit>
+            <trans-unit id="flashMessage.user.create.msg">
+                <source>Your user is created successfully. You can login now with this user.</source>
+                <target>Ihr Benutzer wurde erfolgreich erstellt. Sie können sich jetzt mit diesem Benutzer anmelden.</target>
+            </trans-unit>
+            <trans-unit id="flashMessage.user.create.title">
+                <source>Your user is created!</source>
+                <target>Ihr Benutzer ist erstellt!</target>
+            </trans-unit>
             <trans-unit id="action.resetPassword">
                 <source>Forgot your password?</source>
                 <target>Passwort vergessen?</target>

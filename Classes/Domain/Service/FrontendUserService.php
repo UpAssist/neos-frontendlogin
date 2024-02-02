@@ -7,11 +7,12 @@ namespace UpAssist\Neos\FrontendLogin\Domain\Service;
  *                                                                             */
 
 use Neos\Flow\Annotations as Flow;
+use Neos\Flow\I18n\Service as I18nService;
 use Neos\Flow\Security\Account;
 use Neos\Neos\Domain\Exception;
 use Neos\Neos\Domain\Model\User;
 use Neos\Neos\Domain\Service\UserService;
-use Neos\Party\Domain\Model\ElectronicAddress;
+use UpAssist\Neos\FrontendLogin\Service\EmailService;
 
 /**
  * Central authority to deal with "frontend users"
@@ -20,6 +21,18 @@ use Neos\Party\Domain\Model\ElectronicAddress;
 class FrontendUserService extends UserService
 {
     protected $defaultAuthenticationProviderName = 'UpAssist.Neos.FrontendLogin:Frontend';
+
+    /**
+     * @var EmailService
+     * @Flow\Inject
+     */
+    protected EmailService $emailService;
+
+    /**
+     * @var I18nService $i18nService
+     * @Flow\Inject
+     */
+    protected I18nService $i18nService;
 
     /**
      * Returns the currently logged in user, if any
@@ -129,6 +142,10 @@ class FrontendUserService extends UserService
      */
     public function addUser($username, $password, User $user, array $roleIdentifiers = null, $authenticationProviderName = null)
     {
+        $this->emailService->sendEmail('adminNotification', [
+            'username' => $username,
+            'locale' => $this->i18nService->getConfiguration()->getCurrentLocale()->getLanguage()
+        ]);
         return parent::addUser($username, $password, $user, $roleIdentifiers, $authenticationProviderName);
         // TODO: Prevent duplicates (now nasty sql error)
     }
