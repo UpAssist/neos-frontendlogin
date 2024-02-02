@@ -1,6 +1,7 @@
 prototype(UpAssist.Neos.FrontendLogin:Plugin.RegistrationForm) < prototype(Neos.Neos:Plugin) {
-  package = 'UpAssist.Neos.FrontendLogin'
-  controller = 'User'
-  action = 'new'
-  argumentNamespace = 'register'
+    package = 'UpAssist.Neos.FrontendLogin'
+    controller = 'User'
+    # action can be one of 'new' or 'newByEmail'
+    action = 'newByEmail'
+    argumentNamespace = 'register'
 }

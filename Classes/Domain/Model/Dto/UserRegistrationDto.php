@@ -120,4 +120,11 @@ class UserRegistrationDto
         $this->roleIdentifier = $roleIdentifier;
     }
 
+    /**
+     * @return string
+     */
+    public function getFirstEmailAddress()
+    {
+        return $this->user->getElectronicAddresses()->toArray()[0];
+    }
 }

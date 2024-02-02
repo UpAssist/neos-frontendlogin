@@ -142,6 +142,15 @@ class UserController extends ActionController
     }
 
     /**
+     * @return void
+     */
+    public function newByEmailAction()
+    {
+        $this->view->assign('roleIdentifiers', $this->roleIdentifiers);
+        $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
+    }
+
+    /**
      * @param UserRegistrationDto $newUser
      * @return void
      * @throws StopActionException
@@ -170,7 +179,18 @@ class UserController extends ActionController
             $this->redirectToUri($uri);
         }
 
-        $this->redirect('index');
+        $this->redirect('login', 'Login');
+    }
+
+    /**
+     * @param UserRegistrationDto $newUser
+     * @return void
+     * @throws StopActionException
+     */
+    public function createByEmailAction(UserRegistrationDto $newUser)
+    {
+        $this->userService->addUser($newUser->getFirstEmailAddress(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
+        $this->redirect('login', 'Login');
     }
 
     /**
