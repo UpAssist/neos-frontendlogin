@@ -34,7 +34,7 @@ UpAssist.Neos.FrontendLogin.UserController.new = Neos.Fusion:Component {
       </fieldset>
       <fieldset @if={roleIdentifiers}>
 
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[roleIdentifier]" label={props.labels.role}>
+        <Neos.Fusion.Form:FieldContainer field.name="newUser[roleIdentifier]" label={props.labels.role} @if={roleIdentifiers}>
           <Neos.Fusion.Form:Select>
             <Neos.Fusion:Loop items={roleIdentifiers}>
               <Neos.Fusion.Form:Select.Option option.value={item.key}>{item.label}</Neos.Fusion.Form:Select.Option>
