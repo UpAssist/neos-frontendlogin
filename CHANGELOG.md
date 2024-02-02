@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.2.0](https://github.com/UpAssist/neos-frontendlogin/compare/8.1.3...8.2.0) (2024-02-02)
+
+
+### Features
+
+* signup by email address ([d762e41](https://github.com/UpAssist/neos-frontendlogin/commit/d762e41f10390705d62d4c544e18d9758944bfe2))
+* signup functionality ([6c2bc1d](https://github.com/UpAssist/neos-frontendlogin/commit/6c2bc1d97e470412ffbeb370c558185902269557))
+
 ### [8.1.3](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.1.2...8.1.3) (2023-09-13)
 
 ### [8.1.2](https://bitbucket.org/upassist/upassist-neos-frontendlogin/compare/8.1.1...8.1.2) (2023-07-20)
