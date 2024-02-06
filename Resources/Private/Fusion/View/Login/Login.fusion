@@ -1,22 +1,25 @@
 UpAssist.Neos.FrontendLogin.LoginController.login = Neos.Fusion:Component {
-  resetPassword = Neos.Fusion:UriBuilder {
-    package = 'UpAssist.Neos.FrontendLogin'
-    controller = 'User'
-    action = 'resetPassword'
 
-    @if.isAllowed = ${Security.hasAccess('UpAssist.Neos.FrontendLogin:CanResetPassword')}
-  }
-  labels = Neos.Fusion:DataStructure {
-    resetPassword = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:action.resetPassword')}
-  }
-  renderer = afx`
-    <UpAssist.Neos.FrontendLogin:Component.Molecule.FlashMessages flashMessages={flashMessages} />
-    <Neos.Fusion:Fragment @if={Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
-      <UpAssist.Neos.FrontendLogin:Component.Molecule.Status enableLogoutButton={true} />
-    </Neos.Fusion:Fragment>
-    <Neos.Fusion:Fragment @if={!Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
-      <UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm />
-      <a href={props.resetPassword} class="password reset">{props.labels.resetPassword}</a>
-    </Neos.Fusion:Fragment>
-  `
+    resetPassword = Neos.Fusion:UriBuilder {
+        package = 'UpAssist.Neos.FrontendLogin'
+        controller = 'User'
+        action = 'resetPassword'
+        @if.isAllowed = ${Security.hasAccess('UpAssist.Neos.FrontendLogin:CanResetPassword')}
+    }
+
+    labels = Neos.Fusion:DataStructure {
+        resetPassword = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:action.resetPassword')}
+        username = ${usernameLabel != null ? usernameLabel : I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.username')}
+    }
+
+    renderer = afx`
+        <UpAssist.Neos.FrontendLogin:Component.Molecule.FlashMessages flashMessages={flashMessages} />
+        <Neos.Fusion:Fragment @if={Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
+            <UpAssist.Neos.FrontendLogin:Component.Molecule.Status enableLogoutButton={true} />
+        </Neos.Fusion:Fragment>
+        <Neos.Fusion:Fragment @if={!Security.hasRole('UpAssist.Neos.FrontendLogin:User')}>
+            <UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm usernameLabel={props.labels.username} />
+            <a href={props.resetPassword} class="password reset">{props.labels.resetPassword}</a>
+        </Neos.Fusion:Fragment>
+    `
 }

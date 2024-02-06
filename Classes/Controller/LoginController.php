@@ -1,4 +1,5 @@
 <?php
+
 namespace UpAssist\Neos\FrontendLogin\Controller;
 
 /*                                                                             *
@@ -45,6 +46,7 @@ class LoginController extends AbstractAuthenticationController
     {
         $this->view->assign('flashMessages', $this->controllerContext->getFlashMessageContainer()->getMessagesAndFlush());
         $this->view->assign('account', $this->securityContext->getAccount());
+        $this->view->assign('usernameLabel', $this->request->getInternalArgument('__usernameLabel'));
     }
 
     /**
@@ -65,9 +67,9 @@ class LoginController extends AbstractAuthenticationController
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
             $this->controllerContext->getFlashMessageContainer()->addMessage(
                 new Error\Notice(
-                    $this->translator->translateById('flashMessage.login.logout-success.msg', [],null,null,'Main', $this->translationPackage),
+                    $this->translator->translateById('flashMessage.login.logout-success.msg', [], null, null, 'Main', $this->translationPackage),
                     null, [],
-                    $this->translator->translateById('flashMessage.login.logout-success.title', [],null,null,'Main', $this->translationPackage)
+                    $this->translator->translateById('flashMessage.login.logout-success.title', [], null, null, 'Main', $this->translationPackage)
                 )
             );
         }
@@ -102,9 +104,9 @@ class LoginController extends AbstractAuthenticationController
         if ($this->request->getInternalArgument('__suppressFlashMessage') !== true) {
             $this->controllerContext->getFlashMessageContainer()->addMessage(
                 new Error\Notice(
-                    $this->translator->translateById('flashMessage.login.login-success.msg', [],null,null,'Main', $this->translationPackage),
+                    $this->translator->translateById('flashMessage.login.login-success.msg', [], null, null, 'Main', $this->translationPackage),
                     null, [],
-                    $this->translator->translateById('flashMessage.login.login-success.title', [],null,null,'Main', $this->translationPackage)
+                    $this->translator->translateById('flashMessage.login.login-success.title', [], null, null, 'Main', $this->translationPackage)
                 )
             );
         }
@@ -127,9 +129,9 @@ class LoginController extends AbstractAuthenticationController
     {
         $this->controllerContext->getFlashMessageContainer()->addMessage(
             new Error\Error(
-                $this->translator->translateById('flashMessage.login.login-error.msg', [],null,null,'Main', $this->translationPackage),
+                $this->translator->translateById('flashMessage.login.login-error.msg', [], null, null, 'Main', $this->translationPackage),
                 null, [],
-                $this->translator->translateById('flashMessage.login.login-error.title', [],null,null,'Main', $this->translationPackage)
+                $this->translator->translateById('flashMessage.login.login-error.title', [], null, null, 'Main', $this->translationPackage)
             )
         );
     }

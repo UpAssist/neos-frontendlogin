@@ -1,34 +1,37 @@
 prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm) < prototype(Neos.Fusion:Component) {
-  labels = Neos.Fusion:DataStructure {
-    username = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.username')}
-    password = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.password')}
-    submit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:button.submit')}
-  }
 
-  renderer = afx`
-    <Neos.Fusion.Form:Form
-      form.target.action="authenticate"
-      form.target.controller="login"
-      form.method="post"
-    >
-      <label for="username">{props.labels.username}</label>
-      <input type="text" autocomplete=""
-             name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]"
-             id="username"/>
-      <label for="password">{props.labels.password}</label>
-      <input type="password" autocomplete="current-password"
-             name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]"
-             id="password"/>
-      <Neos.Fusion.Form:Button>{props.labels.submit}</Neos.Fusion.Form:Button>
-    </Neos.Fusion.Form:Form>
-  `
+    @context.usernameLabel = ${this.usernameLabel}
 
-  @cache {
-    mode = 'uncached'
-    context {
-      1 = 'node'
-      2 = 'documentNode'
-      3 = 'site'
+    labels = Neos.Fusion:DataStructure {
+        username = ${usernameLabel}
+        password = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.password')}
+        submit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:button.submit')}
     }
-  }
+
+    renderer = afx`
+        <Neos.Fusion.Form:Form
+            form.target.action="authenticate"
+            form.target.controller="login"
+            form.method="post"
+        >
+            <label for="username">{props.labels.username}</label>
+            <input type="text" autocomplete=""
+                   name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][username]"
+                   id="username" />
+            <label for="password">{props.labels.password}</label>
+            <input type="password" autocomplete="current-password"
+                   name="__authentication[Neos][Flow][Security][Authentication][Token][UsernamePassword][password]"
+                   id="password" />
+            <Neos.Fusion.Form:Button>{props.labels.submit}</Neos.Fusion.Form:Button>
+        </Neos.Fusion.Form:Form>
+    `
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'node'
+            2 = 'documentNode'
+            3 = 'site'
+        }
+    }
 }
