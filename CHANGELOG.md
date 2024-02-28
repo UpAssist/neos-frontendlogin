@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.4.0](https://github.com/UpAssist/neos-frontendlogin/compare/8.3.1...8.4.0) (2024-02-28)
+
+
+### Bug Fixes
+
+* using another translationpackage did not result in all labels updated ([5a76495](https://github.com/UpAssist/neos-frontendlogin/commit/5a7649521cc425ab13f5e0af01dea90288de03a5))
+
 ### [8.3.1](https://github.com/UpAssist/neos-frontendlogin/compare/8.3.0...8.3.1) (2024-02-06)
 
 ## [8.3.0](https://github.com/UpAssist/neos-frontendlogin/compare/8.2.0...8.3.0) (2024-02-02)
