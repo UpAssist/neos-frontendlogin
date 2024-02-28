@@ -1,5 +1,7 @@
 UpAssist.Neos.FrontendLogin.LoginController.login = Neos.Fusion:Component {
 
+    @context.translationPackage = ${Configuration.setting('UpAssist.Neos.FrontendLogin.translationPackage')}
+
     resetPassword = Neos.Fusion:UriBuilder {
         package = 'UpAssist.Neos.FrontendLogin'
         controller = 'User'
@@ -8,8 +10,8 @@ UpAssist.Neos.FrontendLogin.LoginController.login = Neos.Fusion:Component {
     }
 
     labels = Neos.Fusion:DataStructure {
-        resetPassword = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:action.resetPassword')}
-        username = ${usernameLabel != null ? usernameLabel : I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.username')}
+        resetPassword = ${I18n.translate(translationPackage + ':Main:action.resetPassword')}
+        username = ${usernameLabel != null ? usernameLabel : I18n.translate(translationPackage + ':Component.Molecule.LoginForm:label.username')}
     }
 
     renderer = afx`

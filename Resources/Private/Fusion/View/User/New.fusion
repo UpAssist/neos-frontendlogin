@@ -1,55 +1,62 @@
 UpAssist.Neos.FrontendLogin.UserController.new = Neos.Fusion:Component {
-  labels = Neos.Fusion:DataStructure {
-    username = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.username')}
-    password = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.password')}
-    firstname = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.firstname')}
-    lastname = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.lastname')}
-    role = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.role')}
-    email = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:label.email')}
-    submit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Main:button.create')}
-  }
-  renderer = afx`
-    <Neos.Fusion.Form:Form
-      form.target.controller="User"
-      form.target.action="create"
-    >
-      <fieldset>
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[username]" label={props.labels.username}>
-          <Neos.Fusion.Form:Input/>
-        </Neos.Fusion.Form:FieldContainer>
-      </fieldset>
-      <fieldset>
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[user][name][firstName]" label={props.labels.firstname}>
-          <Neos.Fusion.Form:Input />
-        </Neos.Fusion.Form:FieldContainer>
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[user][name][lastName]" label={props.labels.lastname}>
-          <Neos.Fusion.Form:Input />
-        </Neos.Fusion.Form:FieldContainer>
-      </fieldset>
-      <fieldset>
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[user][electronicAddresses][0][identifier]" label={props.labels.email}>
-          <Neos.Fusion.Form:Input />
-        </Neos.Fusion.Form:FieldContainer>
-        <Neos.Fusion.Form:Hidden field.name="newUser[user][electronicAddresses][0][type]" field.value="Email"/>
-      </fieldset>
-      <fieldset @if={roleIdentifiers}>
+    @context.translationPackage = ${Configuration.setting('UpAssist.Neos.FrontendLogin.translationPackage')}
 
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[roleIdentifier]" label={props.labels.role} @if={roleIdentifiers}>
-          <Neos.Fusion.Form:Select>
-            <Neos.Fusion:Loop items={roleIdentifiers}>
-              <Neos.Fusion.Form:Select.Option option.value={item.key}>{item.label}</Neos.Fusion.Form:Select.Option>
-            </Neos.Fusion:Loop>
-          </Neos.Fusion.Form:Select>
-        </Neos.Fusion.Form:FieldContainer>
+    labels = Neos.Fusion:DataStructure {
+        username = ${I18n.translate(translationPackage + ':Main:label.username')}
+        password = ${I18n.translate(translationPackage + ':Main:label.password')}
+        firstname = ${I18n.translate(translationPackage + ':Main:label.firstname')}
+        lastname = ${I18n.translate(translationPackage + ':Main:label.lastname')}
+        role = ${I18n.translate(translationPackage + ':Main:label.role')}
+        email = ${I18n.translate(translationPackage + ':Main:label.email')}
+        submit = ${I18n.translate(translationPackage + ':Main:button.create')}
+    }
+    renderer = afx`
+        <Neos.Fusion.Form:Form
+            form.target.controller="User"
+            form.target.action="create"
+        >
+            <fieldset>
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[username]" label={props.labels.username}>
+                    <Neos.Fusion.Form:Input />
+                </Neos.Fusion.Form:FieldContainer>
+            </fieldset>
+            <fieldset>
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[user][name][firstName]"
+                                                 label={props.labels.firstname}>
+                    <Neos.Fusion.Form:Input />
+                </Neos.Fusion.Form:FieldContainer>
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[user][name][lastName]"
+                                                 label={props.labels.lastname}>
+                    <Neos.Fusion.Form:Input />
+                </Neos.Fusion.Form:FieldContainer>
+            </fieldset>
+            <fieldset>
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[user][electronicAddresses][0][identifier]"
+                                                 label={props.labels.email}>
+                    <Neos.Fusion.Form:Input />
+                </Neos.Fusion.Form:FieldContainer>
+                <Neos.Fusion.Form:Hidden field.name="newUser[user][electronicAddresses][0][type]" field.value="Email" />
+            </fieldset>
+            <fieldset @if={roleIdentifiers}>
 
-      </fieldset>
-      <fieldset>
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[roleIdentifier]" label={props.labels.role}
+                                                 @if={roleIdentifiers}>
+                    <Neos.Fusion.Form:Select>
+                        <Neos.Fusion:Loop items={roleIdentifiers}>
+                            <Neos.Fusion.Form:Select.Option
+                                option.value={item.key}>{item.label}</Neos.Fusion.Form:Select.Option>
+                        </Neos.Fusion:Loop>
+                    </Neos.Fusion.Form:Select>
+                </Neos.Fusion.Form:FieldContainer>
 
-        <Neos.Fusion.Form:FieldContainer field.name="newUser[password]" label={props.labels.password}>
-          <Neos.Fusion.Form:Input />
-        </Neos.Fusion.Form:FieldContainer>
-      </fieldset>
-      <Neos.Fusion.Form:Button type="submit">{props.labels.submit}</Neos.Fusion.Form:Button>
-    </Neos.Fusion.Form:Form>
-  `
+            </fieldset>
+            <fieldset>
+
+                <Neos.Fusion.Form:FieldContainer field.name="newUser[password]" label={props.labels.password}>
+                    <Neos.Fusion.Form:Input />
+                </Neos.Fusion.Form:FieldContainer>
+            </fieldset>
+            <Neos.Fusion.Form:Button type="submit">{props.labels.submit}</Neos.Fusion.Form:Button>
+        </Neos.Fusion.Form:Form>
+    `
 }

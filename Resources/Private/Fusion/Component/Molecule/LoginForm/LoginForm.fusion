@@ -1,11 +1,12 @@
 prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm) < prototype(Neos.Fusion:Component) {
+    @context.translationPackage = ${Configuration.setting('UpAssist.Neos.FrontendLogin.translationPackage')}
 
     @context.usernameLabel = ${this.usernameLabel}
 
     labels = Neos.Fusion:DataStructure {
         username = ${usernameLabel}
-        password = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:label.password')}
-        submit = ${I18n.translate('UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm:button.submit')}
+        password = ${I18n.translate(translationPackage + ':Component.Molecule.LoginForm:label.password')}
+        submit = ${I18n.translate(translationPackage + ':Component.Molecule.LoginForm:button.submit')}
     }
 
     renderer = afx`

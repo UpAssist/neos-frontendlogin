@@ -81,7 +81,7 @@ class UserController extends ActionController
      * @var string $translationPackage
      * @Flow\InjectConfiguration (path="translationPackage", package="UpAssist.Neos.FrontendLogin")
      */
-    protected $translationPackage = 'UpAssist.Neos.FrontendLogin';
+    protected string $translationPackage = 'UpAssist.Neos.FrontendLogin';
 
 
     /**
