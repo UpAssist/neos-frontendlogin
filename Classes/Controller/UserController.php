@@ -319,6 +319,11 @@ class UserController extends ActionController
         $account = $this->userService->getAccountByEmailAddress($emailAddress);
         if ($account) {
 
+            // If a token exists for the current account, remove it
+            $oldPasswordToken = $this->passwordResetTokenRepository->findOneByAccount($account);
+            $this->passwordResetTokenRepository->remove($oldPasswordToken);
+            $this->persistenceManager->persistAll();
+
             // Generate a random salt
             $salt = bin2hex(random_bytes(16));
 
