@@ -28,10 +28,17 @@ class PasswordResetToken
      */
     protected Account $account;
 
+    /**
+     * @var \DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable", nullable=false)
+     */
+    protected \DateTimeImmutable $createdAt;
+
     public function __construct(string $token = null, Account $account = null) {
         if ($token && $account) {
             $this->setToken($token);
             $this->setAccount($account);
+            $this->createdAt = new \DateTimeImmutable();
         }
     }
 
@@ -66,5 +73,13 @@ class PasswordResetToken
     public function setAccount(Account $account): void
     {
         $this->account = $account;
+    }
+
+    /**
+     * @return \DateTimeImmutable
+     */
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 }

@@ -14,6 +14,7 @@ use Neos\Neos\Domain\Model\User;
 use Neos\Party\Domain\Model\ElectronicAddress;
 use Neos\Party\Domain\Model\PersonName;
 use UpAssist\Neos\FrontendLogin\Domain\Model\Dto\UserRegistrationDto;
+use UpAssist\Neos\FrontendLogin\Domain\Repository\PasswordResetTokenRepository;
 use UpAssist\Neos\FrontendLogin\Domain\Service\FrontendUserService;
 
 /**
@@ -26,7 +27,13 @@ class FrontendUserCommandController extends CommandController
      * @Flow\Inject
      * @var FrontendUserService
      */
-    protected $userService;
+    protected FrontendUserService $userService;
+
+    /**
+     * @Flow\Inject
+     * @var PasswordResetTokenRepository
+     */
+    protected PasswordResetTokenRepository $passwordResetTokenRepository;
 
     /**
      * Create a new "Frontend user"
@@ -64,6 +71,18 @@ class FrontendUserCommandController extends CommandController
         $newUser->setElectronicAddresses($collection);
         $this->userService->addUser($newUser->getUsername(), $newUser->getPassword(), $newUser->getUser(), [$newUser->getRoleIdentifier()]);
 
+    }
+
+    /**
+     * Cleanup old password reset tokens
+     * @return void
+     * @throws \Neos\Flow\Persistence\Exception\IllegalObjectTypeException
+     * @throws \Neos\Flow\Persistence\Exception\InvalidQueryException
+     */
+    public function cleanExpiredTokensCommand(): void
+    {
+        $this->passwordResetTokenRepository->removeExpiredTokens();
+        $this->outputLine('Expired password reset tokens have been removed.');
     }
 
 }
