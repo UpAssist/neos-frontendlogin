@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.5.0](https://github.com/UpAssist/neos-frontendlogin/compare/8.4.0...8.5.0) (2025-04-02)
+
+
+### Features
+
+* command to clean up old tokens ([e3c812c](https://github.com/UpAssist/neos-frontendlogin/commit/e3c812cd3444ef1806aeb3f4029f83652b4724cd))
+
 ## [8.4.0](https://github.com/UpAssist/neos-frontendlogin/compare/8.3.1...8.4.0) (2024-02-28)
 
 
