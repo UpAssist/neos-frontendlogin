@@ -275,7 +275,7 @@ class UserController extends ActionController
             $timestampFromKey = (int)substr($token, -10);
 
             // Compare the difference between the timestamps with the expiration threshold
-            if (($currentTimestamp - $timestampFromKey) > $expirationThreshold) {
+            if (($currentTimestamp - $timestampFromKey) > $expirationThreshold && $passwordResetToken !== null) {
                 // The key has expired
                 $this->view->assign('status','invalidToken');
                 $this->passwordResetTokenRepository->remove($passwordResetToken);
@@ -321,8 +321,10 @@ class UserController extends ActionController
 
             // If a token exists for the current account, remove it
             $oldPasswordToken = $this->passwordResetTokenRepository->findOneByAccount($account);
-            $this->passwordResetTokenRepository->remove($oldPasswordToken);
-            $this->persistenceManager->persistAll();
+            if ($oldPasswordToken) {
+                $this->passwordResetTokenRepository->remove($oldPasswordToken);
+                $this->persistenceManager->persistAll();
+            }
 
             // Generate a random salt
             $salt = bin2hex(random_bytes(16));
