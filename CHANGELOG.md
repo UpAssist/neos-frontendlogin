@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.2](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.1...8.5.2) (2025-06-11)
+
+
+### Bug Fixes
+
+* labels are not showing in the interface ([8fb0813](https://github.com/UpAssist/neos-frontendlogin/commit/8fb08136cda19bed011232bc472dbbcdfa363c94))
+
 ### [8.5.1](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.0...8.5.1) (2025-04-22)
 
 
