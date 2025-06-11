@@ -39,9 +39,12 @@ Neos:
         translation:
           autoInclude:
             UpAssist.Neos.FrontendLogin:
-              - '*'
+              - Main
+              - Inspector
+              - Modules
+              - 'NodeTypes/*'
     nodeTypes:
       groups:
         frontendLogin:
-          label: 'UpAssist.Neos.FrontendLogin:Main:nodeTypes.groups.frontendLogin'
+          label: 'Authentication'
           collapsed: true

@@ -131,6 +131,10 @@
                 <source>The password has been successfully changed.</source>
                 <target>Das Passwort wurde erfolgreich geändert.</target>
             </trans-unit>
+            <trans-unit id="nodeTypes.groups.frontendLogin">
+              <source>Frontend Login</source>
+              <target>Frontend Login</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
