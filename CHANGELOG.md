@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.3](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.2...8.5.3) (2025-07-14)
+
 ### [8.5.2](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.1...8.5.2) (2025-06-11)
 
 
