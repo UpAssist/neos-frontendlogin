@@ -14,6 +14,7 @@ prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.LoginForm) < prototype(
             form.target.action="authenticate"
             form.target.controller="login"
             form.method="post"
+            attributes.class="neos-frontendlogin-login"
         >
             <label for="username">{props.labels.username}</label>
             <input type="text" autocomplete=""

@@ -1,29 +1,31 @@
 prototype(UpAssist.Neos.FrontendLogin:Component.Molecule.Status) < prototype(Neos.Fusion:Component) {
-    @propType {
-        enableLogoutButton = ${PropTypes.boolean}
-    }
-    @context.translationPackage = ${Configuration.setting('UpAssist.Neos.FrontendLogin.translationPackage')}
+  @propType {
+    enableLogoutButton = ${PropTypes.boolean}
+  }
+  @context.translationPackage = ${Configuration.setting('UpAssist.Neos.FrontendLogin.translationPackage')}
 
-    enableLogoutButton = false
-    attributes = Neos.Fusion:DataStructure
-    messageAttributes = Neos.Fusion:DataStructure
-    labels = Neos.Fusion:DataStructure {
-        message = ${I18n.translate('msg.welcome', null, [FrontendLogin.User.getUserByAccount().name.firstName], 'Component.Molecule.Status', 'UpAssist.Neos.FrontendLogin')}
-        logout = ${I18n.translate(translationPackage + ':Component.Molecule.Status:button.logout')}
-    }
+  enableLogoutButton = false
+  attributes = Neos.Fusion:DataStructure {
+    class = 'neos-frontendlogin-status'
+  }
+  messageAttributes = Neos.Fusion:DataStructure
+  labels = Neos.Fusion:DataStructure {
+    message = ${I18n.translate('msg.welcome', null, [FrontendLogin.User.getUserByAccount().name.firstName], 'Component.Molecule.Status', 'UpAssist.Neos.FrontendLogin')}
+    logout = ${I18n.translate(translationPackage + ':Component.Molecule.Status:button.logout')}
+  }
 
-    renderer = afx`
-        <div {...props.attributes}>
-            <span {...props.messageAttributes}>{props.labels.message}</span>
-            <Neos.Fusion.Form:Form
-                form.target.action="logout"
-                form.target.controller="login"
-                form.method="post"
-                @if={props.enableLogoutButton}
-            >
-                <Neos.Fusion.Form:Button
-                    attributes.class="action action--logout">{props.labels.logout}</Neos.Fusion.Form:Button>
-            </Neos.Fusion.Form:Form>
-        </div>
-    `
+  renderer = afx`
+    <div {...props.attributes}>
+      <span {...props.messageAttributes}>{props.labels.message}</span>
+      <Neos.Fusion.Form:Form
+        form.target.action="logout"
+        form.target.controller="login"
+        form.method="post"
+        @if={props.enableLogoutButton}
+      >
+        <Neos.Fusion.Form:Button
+          attributes.class="action action--logout">{props.labels.logout}</Neos.Fusion.Form:Button>
+      </Neos.Fusion.Form:Form>
+    </div>
+  `
 }
