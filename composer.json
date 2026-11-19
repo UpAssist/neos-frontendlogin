@@ -3,10 +3,14 @@
     "type": "neos-package",
     "description": "",
     "require": {
-        "neos/neos": "*",
-        "neos/fusion": "*",
-        "neos/fusion-afx": "*",
-        "neos/fusion-form": "*"
+        "php": "^8.1",
+        "neos/neos": "^8.3",
+        "neos/fusion": "^8.3",
+        "neos/fusion-afx": "^8.3",
+        "neos/fusion-form": "^2.0 || ^3.0"
+    },
+    "suggest": {
+        "neos/swiftmailer": "Needed for password reset and admin notification mails (^7.3)"
     },
     "autoload": {
         "psr-4": {
