@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.4](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.3...8.5.4) (2026-11-19)
+
+
+### Bug Fixes
+
+* only build the mail message when a template is configured, so registering users works without neos/swiftmailer installed
+
+### Chores
+
+* constraints set to what is tested: `neos/neos ^8.3` (was `*`), `php ^8.1`, `neos/fusion-form ^2.0 || ^3.0`; Neos 9 is not supported
+* `neos/swiftmailer` added as suggestion (needed for password reset mails)
+* README: compatibility table
+
 ### [8.5.3](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.2...8.5.3) (2025-07-14)
 
 ### [8.5.2](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.1...8.5.2) (2025-06-11)
