@@ -25,8 +25,6 @@ class EmailService
      */
     public function sendEmail(string $templateName, array $arguments): bool
     {
-        $mail = new Message();
-
         if (!isset($this->template[$templateName])) return false;
 
         $locale = $arguments['locale'] ?? 'en';
@@ -72,6 +70,7 @@ class EmailService
             $sender = [$arguments['sender']->getElectronicAddresses()[0]->getIdentifier() => $arguments['sender']->getName()];
         }
 
+        $mail = new Message();
         $mail
             ->setFrom($sender)
             ->setTo($recipient)
