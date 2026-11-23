@@ -286,7 +286,10 @@ class UserController extends ActionController
             $timestampFromKey = (int)substr($token, -10);
 
             // Compare the difference between the timestamps with the expiration threshold
-            if (($currentTimestamp - $timestampFromKey) > $expirationThreshold && $passwordResetToken !== null) {
+            if ($passwordResetToken === null) {
+                // Unknown or already used token
+                $this->view->assign('status','invalidToken');
+            } elseif (($currentTimestamp - $timestampFromKey) > $expirationThreshold) {
                 // The key has expired
                 $this->view->assign('status','invalidToken');
                 $this->passwordResetTokenRepository->remove($passwordResetToken);
