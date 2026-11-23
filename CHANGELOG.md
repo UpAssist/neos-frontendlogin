@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.5](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.4...8.5.5) (2026-11-23)
+
+
+### Bug Fixes
+
+* plugins rendered on the 404 page (e.g. a login form in the layout) can build their form targets and links again. On Neos 8.4 this used to loop the request forever, because the absorbed routing exception re-rendered the form while its backtrace was logged (neos/flow-development-collection#3487)
+
 ### [8.5.4](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.3...8.5.4) (2026-11-19)
 
 
