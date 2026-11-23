@@ -4,4 +4,6 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.RegistrationForm) < prototype(Neos.
     # action can be one of 'new' or 'newByEmail'
     action = 'newByEmail'
     argumentNamespace = 'register'
+    # Lets the plugin build its URIs on pages without a routed node, e.g. the 404 page
+    documentNode = ${documentNode}
 }

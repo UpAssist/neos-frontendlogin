@@ -35,6 +35,17 @@ use UpAssist\Neos\FrontendLogin\Service\EmailService;
  */
 class UserController extends ActionController
 {
+    use ResolvableMainRequestTrait;
+
+    /**
+     * @return void
+     */
+    protected function initializeAction()
+    {
+        parent::initializeAction();
+        $this->makeMainRequestResolvable($this->request);
+    }
+
     /**
      * @var string
      */

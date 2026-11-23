@@ -3,6 +3,8 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.LoginForm) < prototype(Neos.Neos:Pl
     controller = 'Login'
     action = 'login'
     argumentNamespace = 'login'
+    # Lets the plugin build its URIs on pages without a routed node, e.g. the 404 page
+    documentNode = ${documentNode}
 
     redirectNode = Neos.Neos:NodeUri {
         node = ${q(node).property('redirectNode') ? q(node).property('redirectNode') : site}
