@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.7](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.6...8.5.7) (2026-11-23)
+
+
+### Bug Fixes
+
+* deleting a user who has an open password reset token no longer fails on the foreign key; the token is deleted with the account. **Run `./flow doctrine:migrate`** after updating (migration `Version20261123140000`)
+
 ### [8.5.6](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.5...8.5.6) (2026-11-23)
 
 
