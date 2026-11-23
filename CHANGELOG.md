@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [8.5.6](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.5...8.5.6) (2026-11-23)
+
+
+### Bug Fixes
+
+* opening a password reset link with an unknown or already used token shows the invalid-link message instead of a 500
+
 ### [8.5.5](https://github.com/UpAssist/neos-frontendlogin/compare/8.5.4...8.5.5) (2026-11-23)
 
 
