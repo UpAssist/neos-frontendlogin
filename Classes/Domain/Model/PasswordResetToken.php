@@ -24,7 +24,7 @@ class PasswordResetToken
     /**
      * @var Account
      * @ORM\ManyToOne()
-     * @ORM\Column(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected Account $account;
 
