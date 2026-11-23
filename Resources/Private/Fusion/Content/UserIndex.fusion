@@ -3,4 +3,6 @@ prototype(UpAssist.Neos.FrontendLogin:Plugin.UserIndex) < prototype(Neos.Neos:Pl
   controller = 'User'
   action = 'index'
   argumentNamespace = 'users'
+  # Lets the plugin build its URIs on pages without a routed node, e.g. the 404 page
+  documentNode = ${documentNode}
 }

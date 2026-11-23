@@ -21,6 +21,17 @@ use Neos\Error\Messages as Error;
  */
 class LoginController extends AbstractAuthenticationController
 {
+    use ResolvableMainRequestTrait;
+
+    /**
+     * @return void
+     */
+    protected function initializeAction()
+    {
+        parent::initializeAction();
+        $this->makeMainRequestResolvable($this->request);
+    }
+
     /**
      * @var string
      */
